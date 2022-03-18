@@ -1,0 +1,115 @@
+matias@matias-Ubuntu:~/kurssit/ohjelmistotekniikka/ot-viikko1/tiedostoja$ git log --stat | cat
+commit 9156a2ee61e68377b5c439b8465f1aff44f1184e
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 11:24:21 2022 +0200
+
+    poistettiin file1.txt ja nimettiin file2 -> file22
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 5bf9dbfae0f094c457b8ba41b7971a8595100af4
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 11:14:49 2022 +0200
+
+    luotiin tiedostoja hakemisto ja sen sisälle tiedostot file1, file2 ja file3.txt
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a3aa7ab3faac9159bd5c9aad397e27def005843b
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:47:21 2022 +0200
+
+    muokattiin tiedostoja eka.txt ja kolmas.txt
+
+ eka.txt    | 10 +++++-----
+ kolmas.txt |  3 ++-
+ 2 files changed, 7 insertions(+), 6 deletions(-)
+
+commit cb36a79eecaa31901136699cc49e28cacedfcc0f
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:44:23 2022 +0200
+
+    nimettiin tiedosto.txt -> eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit dea4429f257cc33784eb6314810ee4a34fc71bca
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:43:18 2022 +0200
+
+    poistettiin toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 888cdfa3c828aa09dd3af15ea4141a378a85bf3c
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:40:48 2022 +0200
+
+    muokattiin tiedosto.txt
+
+ tiedosto.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 54a9d537600fe9e658b36ecbf8549ab4c141a497
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:38:43 2022 +0200
+
+    muokattiin tiedosto.txt
+
+ tiedosto.txt | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+commit 7db74f0a77e74b9369780b4ab8a14903bf5e8133
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:30:11 2022 +0200
+
+    luotiin hakemisto stuff ja sinne tiedosto jokin.txt
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 348f2422e04cb12229bf96c5557f217ec11168e7
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:28:12 2022 +0200
+
+    muokattiin kolmas.txt ja toinen.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 1ec399f750c3f9c5e3ef7874fb0191306351b3d2
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:26:27 2022 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 168bbcd1d06a5e3f826528c29e72f9ea2b1d3079
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:24:37 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 986d36dc736571cc723dac5d472498ce17f82ac9
+Author: Matias Sinisalo <matias.aleksanteri@hotmail.fi>
+Date:   Fri Mar 18 10:20:41 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+matias@matias-Ubuntu:~/kurssit/ohjelmistotekniikka/ot-viikko1/tiedostoja$
