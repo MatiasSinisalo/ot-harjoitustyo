@@ -1,8 +1,9 @@
 # Ohjelmistotekniikan harjoitustyö  
 
-Suoritetaan keväällä 2022  
 
-**Tarkoituksena luoda toimiva sovellus noudattaen ohjelmistotuotannon perjaatteita**  
+**Tehtävät**  
 
-*Projektin tiedot luodaan kurssin viikolla 2*  
-
+*viikko 1*  
+Linkit tehtäviin:  
+[gitlog.txt](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)  
+[komentorivi.txt](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)  
