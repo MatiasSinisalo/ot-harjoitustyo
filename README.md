@@ -1,4 +1,4 @@
-#Ohjelmistotekniikan harjoitustyö  
+# Ohjelmistotekniikan harjoitustyö  
 
 **Tarkoituksena luoda toimiva sovellus noudattaen ohjelmistotuotannon perjaatteita**  
 
