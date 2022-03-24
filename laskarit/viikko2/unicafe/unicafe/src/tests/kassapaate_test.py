@@ -43,6 +43,35 @@ class TestKassapaate(unittest.TestCase):
     def test_syo_edullisesti_kateisella_palauttaa_rahaa_oikein_kun_raha_ei_riita(self):
         self.assertEqual(str(self.kassapaate.syo_edullisesti_kateisella(100)), "100")
     
+    def test_syo_maukkaasti_kateisella_muokkaa_rahaa_oikein_tasarahalla(self):
+        self.kassapaate.syo_maukkaasti_kateisella(400)
+        self.assertEqual(str(self.kassapaate.kassassa_rahaa), "100400")
+
+    def test_syo_maukkaasti_kateisella_muokkaa_rahaa_oikein_ei_tasarahalla(self):
+        self.kassapaate.syo_maukkaasti_kateisella(400)
+        self.assertEqual(str(self.kassapaate.kassassa_rahaa), "100400")
+ 
+    def test_syo_maukkaasti_kateisella_ei_muokkaa_rahaa_oikein_kun_raha_ei_riita(self):
+        self.kassapaate.syo_maukkaasti_kateisella(100)
+        self.assertEqual(str(self.kassapaate.kassassa_rahaa), "100000")
+    
+    def test_syo_maukkaasti_kateisella_ei_muokkaa_myytyjen_lounaiden_maaraa_kun_raha_ei_riita(self):
+        self.kassapaate.syo_maukkaasti_kateisella(100)
+        self.assertEqual(str(self.kassapaate.maukkaat), "0")
+    
+    def test_syo_maukkaasti_kateisella_muokkaa_myytyjen_lounaiden_maaraa_kun_raha_riittaa(self):
+        self.kassapaate.syo_maukkaasti_kateisella(400)
+        self.assertEqual(str(self.kassapaate.maukkaat), "1")
+        
+    def test_syo_maukkaasti_kateisella_palauttaa_rahaa_oikein_ei_tasarahalla(self):
+        self.assertEqual(str(self.kassapaate.syo_maukkaasti_kateisella(460)), "60")
+    
+    def test_syo_maukkaasti_kateisella_palauttaa_rahaa_oikein_tasarahalla(self):
+        self.assertEqual(str(self.kassapaate.syo_maukkaasti_kateisella(400)), "0")
+    
+    def test_syo_maukkaasti_kateisella_palauttaa_rahaa_oikein_kun_raha_ei_riita(self):
+        self.assertEqual(str(self.kassapaate.syo_maukkaasti_kateisella(100)), "100")
+    
     
     
        
