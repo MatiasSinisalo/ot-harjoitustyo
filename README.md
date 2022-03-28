@@ -11,8 +11,16 @@ Linkit tehtäviin:
 -------------
 *viikko 2*  
 Linkit tehtäviin:  
-[Maksukortin testit](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/maksukortti)  
-[Unicafen tehtavakansio](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/unicafe/unicafe)  
+
+[Vaativuus määrittely](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/laskarit/dokumentaatio/vaativuusmaarittely.md)  
+
+
+[Työaika kirjanpito](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/laskarit/dokumentaatio/tyoaikakirjanpito.md)  
+
 [Unicafen tehtavan kattavuuskuvat](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/unicafe%20tehtavan%20koodikattavuuskuvat)  
+
+[Maksukortin testit](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/maksukortti)  
+
+[Unicafen tehtavakansio](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/unicafe/unicafe)  
 
 
