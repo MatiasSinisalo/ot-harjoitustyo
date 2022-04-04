@@ -33,7 +33,7 @@ cellHeight = 50
 cellDisplayTextOffsetpxX = 1
 cellDisplayTextOffsetpxY = 3
 fontsize = 12
-maxLettersInCell = 44
+maxLettersInCell = 20
 gridCanvas = Canvas(root, bg="white", height=250, width=300, xscrollcommand = hbar.set, yscrollcommand=vbar.set)
 gridCanvas.grid(column=0, row=0, sticky=W+E+S+N)
 spreadSheetView = gridDisplay(gridCanvas, gridWidth, gridHeight, cellWidth, cellHeight, cellDisplayTextOffsetpxX, cellDisplayTextOffsetpxY, fontsize, maxLettersInCell)
