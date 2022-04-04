@@ -1,7 +1,7 @@
 
 from tkinter import *
-from gridDisplay import gridDisplay
-
+from GridDisplay import gridDisplay
+from CustomEvent import event
 #Tkinterin käyttöön otettua apua https://tkdocs.com/tutorial/ 
 
 root = Tk()
@@ -48,7 +48,4 @@ hbar.grid(column=0, row=1, sticky=E+W)
 
 gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
 gridCanvas.bind('<1>', lambda event: spreadSheetView.onClick(event))
-gridCanvas.bbox("all")
-
-
 root.mainloop()

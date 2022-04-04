@@ -51,7 +51,8 @@ class gridDisplay:
         self.TextCanvasWidget.insert("1.0", textOfDisplayBox)
     
         self.TextCanvasWidget.focus_set()
-        self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)    
+        self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)
+        return self.TextCanvasWidget   
   
     def generatePreviewText(self, text):
         return text.replace("\n", "")[:self.maxLettersInCell]
