@@ -24,9 +24,6 @@ class gridDisplay:
                 newCellDisplayTextId = self.canvas.create_text(column*self.cellWidth+self.displayTextOffsetX, row*self.cellHeight+self.disPlayTextOffSetY, text=placeholder, anchor=NW, justify=LEFT, width=self.cellWidth-5, font=str(self.fontSize))
                 self.cellGridValues[newCellDisplayTextId] = placeholder
 
-       
-
-
         #textCanvasWidget is the id of the Text widget that spawns when a rectanlge is clicked
         self.TextCanvasWidget = None
         
@@ -57,7 +54,6 @@ class gridDisplay:
         self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)    
   
     def generatePreviewText(self, text):
-       # maxLenghtInChars = self.cellWidth // self.fontsize 
         return text.replace("\n", "")[:self.maxLettersInCell]
 
     def clipToGrid(self, firstx, firsty):

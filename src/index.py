@@ -1,12 +1,7 @@
-from cgitb import text
-from threading import currentThread
+
 from tkinter import *
-import math
-#from tkinter import ttk
-#from tkinter import _XYScrollCommand
 from tkinter import ttk
 from webbrowser import get
-
 from gridDisplay import gridDisplay
 
 
