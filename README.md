@@ -1,6 +1,10 @@
 # Ohjelmistotekniikan harjoitustyö  
+-------------  
+**Ohjelman asennus**  
+1. asenna riippuvuudet: poetry install  
+2. suorita: poetry run invoke start  
 
-
+-------------
 **Tehtävät**  
 -------------
 *viikko 1*  
@@ -22,4 +26,8 @@ Linkit tehtäviin:
 [Maksukortin testit](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/maksukortti)  
 
 [Unicafen tehtavakansio](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/unicafe/unicafe)  
+
+-------------
+*viikko 3*  
+[changelog tiedosto](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
