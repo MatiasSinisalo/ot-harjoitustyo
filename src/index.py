@@ -2,6 +2,7 @@
 from tkinter import *
 from gridDisplay import gridDisplay
 
+#Tkinterin käyttöön otettua apua https://tkdocs.com/tutorial/ 
 
 root = Tk()
 root.option_add('*tearOff', FALSE)
