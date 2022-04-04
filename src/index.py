@@ -1,6 +1,5 @@
 
 from tkinter import *
-from webbrowser import get
 from gridDisplay import gridDisplay
 
 
