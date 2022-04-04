@@ -13,5 +13,5 @@ def coverage(ctx):
 
 @task(coverage)
 def coverage_report(ctx):
-    ctx.run("poetry coverage html", pty=True)
+    ctx.run("poetry run coverage html", pty=True)
 
