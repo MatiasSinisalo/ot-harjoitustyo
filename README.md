@@ -23,3 +23,6 @@ Linkit tehtäviin:
 
 [Unicafen tehtavakansio](https://github.com/MatiasSinisalo/ot-harjoitustyo/tree/master/laskarit/viikko2/unicafe/unicafe)  
 
+-------------
+*viikko 3*  
+[changelog tiedosto](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)  
