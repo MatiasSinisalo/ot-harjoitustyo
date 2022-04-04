@@ -46,7 +46,7 @@ spreadSheetView = gridDisplay(gridCanvas, gridWidth, gridHeight, cellWidth, cell
 
 
 vbar.config(command=gridCanvas.yview)
-#vbar.grid(column=1, row=0, columnspan=2)
+vbar.grid(column=1, row=0, sticky=N+S)
 
 
 hbar.config(command=gridCanvas.xview)
@@ -54,7 +54,7 @@ hbar.grid(column=0, row=1, sticky=E+W)
 
 gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
 gridCanvas.bind('<1>', lambda event: spreadSheetView.onClick(event))
-
+gridCanvas.bbox("all")
 
 
 root.mainloop()
