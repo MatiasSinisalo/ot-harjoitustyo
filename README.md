@@ -1,6 +1,10 @@
 # Ohjelmistotekniikan harjoitustyö  
+-------------  
+**Ohjelman asennus**  
+1. asenna riippuvuudet: poetry install  
+2. suorita: poetry run invoke start  
 
-
+-------------
 **Tehtävät**  
 -------------
 *viikko 1*  
@@ -25,4 +29,5 @@ Linkit tehtäviin:
 
 -------------
 *viikko 3*  
-[changelog tiedosto](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)  
+[changelog tiedosto](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
+
