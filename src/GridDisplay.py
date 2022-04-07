@@ -44,7 +44,7 @@ class gridDisplay:
         #displayTextId is the raw text shown when a rectangle is not clicked
         self.DisplayTextId = None
    
-    def onClick(self, event):
+    def editCell(self, event):
         virtualCoords = self.clipToGrid(self.canvas.canvasx(event.x), self.canvas.canvasy(event.y))
         if virtualCoords[0] != 0 and virtualCoords[1] != 0: 
             if self.DisplayTextId != None and self.TextCanvasWidget != None and self.cellGridValues != None:

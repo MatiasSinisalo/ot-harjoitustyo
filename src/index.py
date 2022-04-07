@@ -17,8 +17,9 @@ root.rowconfigure(0, weight=1)
 
 def handleclick(event):
     if event.state != 1:
-        spreadSheetView.onClick(event)
-    
+        spreadSheetView.editCell(event)
+        
+
 
 menu_file = Menu(menubar)
 menubar.add_cascade(menu=menu_file, label='Tiedosto')
