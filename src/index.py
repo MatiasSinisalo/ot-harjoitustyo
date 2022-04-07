@@ -15,6 +15,10 @@ root['menu'] = menubar
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
+def handleclick(event):
+    if event.state != 1:
+        spreadSheetView.onClick(event)
+    
 
 menu_file = Menu(menubar)
 menubar.add_cascade(menu=menu_file, label='Tiedosto')
@@ -47,5 +51,5 @@ hbar.config(command=gridCanvas.xview)
 hbar.grid(column=0, row=1, sticky=E+W)
 
 gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
-gridCanvas.bind('<1>', lambda event: spreadSheetView.onClick(event))
+gridCanvas.bind('<1>', lambda event: handleclick(event))
 root.mainloop()
