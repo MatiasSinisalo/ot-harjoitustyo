@@ -2,7 +2,7 @@
 from tkinter import *
 from GridDisplay import gridDisplay
 from CustomEvent import event
-#Tkinterin käyttöön otettua apua https://tkdocs.com/tutorial/ 
+#help for Tkinter https://tkdocs.com/tutorial/ 
 
 root = Tk()
 root.option_add('*tearOff', FALSE)
@@ -18,9 +18,15 @@ root.rowconfigure(0, weight=1)
 def handleclicks(event):
     if event.state != 1:
         spreadSheetView.editCell(event)
-    else:
+    elif event.state == 1:
         spreadSheetView.deselect()
+        spreadSheetView.select(event.x, event.y, "lightblue")
 
+def handleMovement(event):
+    #event.state = 257 
+    if event.state == 257:
+        spreadSheetView.select(event.x, event.y, "lightblue")
+       
 
 menu_file = Menu(menubar)
 menubar.add_cascade(menu=menu_file, label='Tiedosto')
@@ -54,5 +60,5 @@ hbar.grid(column=0, row=1, sticky=E+W)
 
 gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
 gridCanvas.bind('<1>', lambda event: handleclicks(event))
-
+gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
 root.mainloop()

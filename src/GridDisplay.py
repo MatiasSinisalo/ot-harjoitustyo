@@ -16,7 +16,10 @@ class gridDisplay:
        
         self.fontSize = fontSize
         self.maxLettersInCell = maxLettersInCell
-
+        
+        self.dragSelectedValues = {}
+        self.dragStart = None
+        self.dragEnd = None
         for column in range(gridWidth):
             for row in range(gridHeight):
                 if column == 0 and row == 0:
@@ -47,8 +50,9 @@ class gridDisplay:
     def editCell(self, event):
         virtualCoords = self.clipToGrid(self.canvas.canvasx(event.x), self.canvas.canvasy(event.y))
         if virtualCoords[0] != 0 and virtualCoords[1] != 0: 
-            if self.DisplayTextId != None and self.TextCanvasWidget != None and self.cellGridValues != None:
-                self.deselect()
+           
+            self.deselect()
+            
             displayTextBoxId = self.canvas.find_closest(virtualCoords[0], virtualCoords[1])
             self.DisplayTextId = displayTextBoxId[0]+1
             textOfDisplayBox = self.cellGridValues[self.DisplayTextId]
@@ -59,18 +63,51 @@ class gridDisplay:
             self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)
             return self.TextCanvasWidget   
     def deselect(self):
-        newText = self.TextCanvasWidget.get("1.0", END)
-        self.canvas.itemconfig(self.DisplayTextId, text=self.generatePreviewText(newText))
-        self.cellGridValues[self.DisplayTextId] = newText
-        self.canvas.delete(self.TextCanvasItem)
-        self.TextCanvasItem = None
+        if self.DisplayTextId != None and self.TextCanvasWidget != None and self.cellGridValues != None:
+            newText = self.TextCanvasWidget.get("1.0", END)
+            self.canvas.itemconfig(self.DisplayTextId, text=self.generatePreviewText(newText))
+            self.cellGridValues[self.DisplayTextId] = newText
+            self.canvas.delete(self.TextCanvasItem)
+            self.TextCanvasItem = None
+        if len(self.dragSelectedValues) > 0:
+            for val in self.dragSelectedValues.keys():
+                self.canvas.itemconfig(val+1, fill="white")
+            self.dragSelectedValues = {}
+
+    def select(self, x, y, fillcolor):
+        virtualCoords = self.clipToGrid(self.canvas.canvasx(x), self.canvas.canvasy(y))
+        if virtualCoords[0] != 0 and virtualCoords[1] != 0:
+            
+            if  self.dragStart == None:
+                self.dragStart = virtualCoords
+                self.dragEnd = virtualCoords
+            else:
+                self.deselect()
+                self.dragEnd = virtualCoords
+            
+            currentX = self.dragStart[0]
+            currentY = self.dragStart[1]
+            endY = self.dragEnd[1]
+            endX = self.dragEnd[0]
+            while currentY <=  endY:
+                while currentX <= endX:
+                    cellBoxID = self.canvas.find_closest(currentX, currentY)
+                    self.canvas.itemconfig(cellBoxID, fill=fillcolor)
+                    self.dragSelectedValues[cellBoxID[0]-1] = True
+                    currentX += self.cellWidth
+                currentY += self.cellHeight
+                currentX = self.dragStart[0]
+         
+           
+       
+   
 
     def generatePreviewText(self, text):
         return text.replace("\n", "")[:self.maxLettersInCell]
 
     def clipToGrid(self, firstx, firsty):
         x = firstx - firstx % self.cellWidth
-        y = firsty - firsty  % self.cellHeight
+        y = firsty - firsty % self.cellHeight
         return (x, y)
 
         
