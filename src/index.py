@@ -18,6 +18,8 @@ root.rowconfigure(0, weight=1)
 def handleclicks(event):
     if event.state != 1:
         spreadSheetView.editCell(event)
+    else:
+        spreadSheetView.deselect()
 
 
 menu_file = Menu(menubar)
