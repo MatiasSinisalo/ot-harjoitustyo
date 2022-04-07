@@ -48,11 +48,7 @@ class gridDisplay:
         virtualCoords = self.clipToGrid(self.canvas.canvasx(event.x), self.canvas.canvasy(event.y))
         if virtualCoords[0] != 0 and virtualCoords[1] != 0: 
             if self.DisplayTextId != None and self.TextCanvasWidget != None and self.cellGridValues != None:
-                newText = self.TextCanvasWidget.get("1.0", END)
-                self.canvas.itemconfig(self.DisplayTextId, text=self.generatePreviewText(newText))
-                self.cellGridValues[self.DisplayTextId] = newText
-                self.canvas.delete(self.TextCanvasItem)
-                self.TextCanvasItem = None
+                self.deselect()
             displayTextBoxId = self.canvas.find_closest(virtualCoords[0], virtualCoords[1])
             self.DisplayTextId = displayTextBoxId[0]+1
             textOfDisplayBox = self.cellGridValues[self.DisplayTextId]
@@ -62,7 +58,13 @@ class gridDisplay:
             self.TextCanvasWidget.focus_set()
             self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)
             return self.TextCanvasWidget   
-  
+    def deselect(self):
+        newText = self.TextCanvasWidget.get("1.0", END)
+        self.canvas.itemconfig(self.DisplayTextId, text=self.generatePreviewText(newText))
+        self.cellGridValues[self.DisplayTextId] = newText
+        self.canvas.delete(self.TextCanvasItem)
+        self.TextCanvasItem = None
+
     def generatePreviewText(self, text):
         return text.replace("\n", "")[:self.maxLettersInCell]
 
