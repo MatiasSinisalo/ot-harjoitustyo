@@ -22,9 +22,6 @@ class chartManager:
     def __init__(self, parent):
        self.parent = parent
        self.CanvasItems = {}
-       
-       
-    
     def addNewBarChart(self, title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch, xpos, ypos):
         newChart = barChart(title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch)
         ChartMatPlotItem = newChart.getChart(self.parent)
@@ -35,7 +32,7 @@ class chartManager:
 
     def onChartDrag(self, event):
         if event.state == 256:
-            self.parent.move(self.CanvasItems[event.widget][0], self.parent.canvasx(event.x), self.parent.canvasy(event.y))
+            self.parent.move(self.CanvasItems[event.widget][0], event.x, event.y)
             self.CanvasItems[event.widget][1].draw_idle()
             self.parent.update_idletasks()
     def updateAllCharts(self):
