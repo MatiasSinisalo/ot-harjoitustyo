@@ -27,7 +27,8 @@ class chartManager:
         ChartMatPlotItem = newChart.getChart(self.parent)
         ChartWidget = ChartMatPlotItem.get_tk_widget()
         ChartWidget.bind("<Motion>", lambda event: self.onChartDrag(event))
-        self.CanvasItems[ChartWidget] = (self.parent.create_window(xpos, ypos, width=500, height = 500, window=ChartWidget), ChartMatPlotItem)
+        ChartWidgetWindowid = self.parent.create_window(xpos, ypos, window=ChartWidget)
+        self.CanvasItems[ChartWidget] = (ChartWidgetWindowid, ChartMatPlotItem)
         return ChartWidget
 
     def onChartDrag(self, event):

@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
     
     canvasChartManager = chartManager(gridCanvas)
-    chartCanvas = canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", [1,2,3,4], [10,20,30,40], 6, 4, 50, 500, 500)
+    chartCanvas = canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", [1,2,3,4], [10,20,30,40], 20, 10, 50, 500, 500)
    
     gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
     gridCanvas.bind('<1>', lambda event: handleclicks(event))
