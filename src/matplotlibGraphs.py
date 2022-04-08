@@ -37,7 +37,7 @@ class chartManager:
         if event.state == 256:
             self.parent.move(self.CanvasItems[event.widget][0], self.parent.canvasx(event.x), self.parent.canvasy(event.y))
             self.CanvasItems[event.widget][1].draw_idle()
-           # self.parent.update_idletasks()
+            self.parent.update_idletasks()
     def updateAllCharts(self):
         for val in self.CanvasItems.values():
             val[1].draw_idle()
