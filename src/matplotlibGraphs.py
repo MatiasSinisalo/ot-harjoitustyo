@@ -23,20 +23,26 @@ class chartManager:
        self.parent = parent
        self.CanvasItems = {}
        
+       
     
     def addNewBarChart(self, title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch, xpos, ypos):
         newChart = barChart(title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch)
-        ChartWidget = newChart.getChart(self.parent)
-  
+        ChartMatPlotItem = newChart.getChart(self.parent)
+        ChartWidget = ChartMatPlotItem.get_tk_widget()
         ChartWidget.bind("<Motion>", lambda event: self.onChartDrag(event))
-      #  ChartWidget.place(x = xpos, y = ypos)
-        self.CanvasItems[ChartWidget] = self.parent.create_window(xpos, ypos, width=500, height = 500, window=ChartWidget)
+        self.CanvasItems[ChartWidget] = (self.parent.create_window(xpos, ypos, width=500, height = 500, window=ChartWidget), ChartMatPlotItem)
         return ChartWidget
 
     def onChartDrag(self, event):
         if event.state == 256:
-            self.parent.move(self.CanvasItems[event.widget], event.x, event.y)
-            self.parent.update_idletasks()
+            self.parent.move(self.CanvasItems[event.widget][0], self.parent.canvasx(event.x), self.parent.canvasy(event.y))
+            self.CanvasItems[event.widget][1].draw_idle()
+           # self.parent.update_idletasks()
+    def updateAllCharts(self):
+        for val in self.CanvasItems.values():
+            val[1].draw_idle()
+        return 0
+
            
            
          

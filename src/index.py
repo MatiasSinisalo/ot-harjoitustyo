@@ -1,12 +1,23 @@
 
+from doctest import master
 from tkinter import *
 
 
 from GridDisplay import gridDisplay
 from matplotlibGraphs import chartManager
+from BarChart import barChart
 
 #help for Tkinter https://tkdocs.com/tutorial/ 
+import matplotlib
 
+matplotlib.use('TkAgg')
+
+#help from https://www.pythontutorial.net/tkinter/tkinter-matplotlib/ 
+#for creating bar charts and integrating them to tkinter
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg
+)
 
 def handleclicks(event):
     if event.state != 1:
@@ -19,12 +30,16 @@ def handleMovement(event):
     #event.state = 257 
     if event.state == 257:
         spreadSheetView.select(event.x, event.y, "lightblue")
+      
 
 def handleXScroll(a, b):
     gridCanvas.xview(a, b)
+    canvasChartManager.updateAllCharts()  
     return
 def handleYScroll(a, b):
     gridCanvas.yview(a, b)
+    canvasChartManager.updateAllCharts()
+  
     return
 
 if __name__ == "__main__":
@@ -77,9 +92,9 @@ if __name__ == "__main__":
 
 
     
-    canvasChartManager = chartManager(MainCanvas)
+    canvasChartManager = chartManager(gridCanvas)
     chartCanvas = canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", [1,2,3,4], [10,20,30,40], 6, 4, 50, 500, 500)
-
+   
     gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
     gridCanvas.bind('<1>', lambda event: handleclicks(event))
     gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
