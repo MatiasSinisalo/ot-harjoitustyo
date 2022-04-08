@@ -11,7 +11,7 @@ from matplotlib.backends.backend_tkagg import (
 )
 
 class barChart:
-    def __init__(self, title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch) -> None:
+    def __init__(self, title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch):
         self.title = title
         self.xTitle = xTitle
         self.yTitle = yTitle
@@ -27,6 +27,6 @@ class barChart:
         self.axes.set_xlabel(self.xTitle)
     
     def getChart(self, app):
-        return FigureCanvasTkAgg(self.figure, app).get_tk_widget()
+        return FigureCanvasTkAgg(self.figure, master=app).get_tk_widget()
 
    
