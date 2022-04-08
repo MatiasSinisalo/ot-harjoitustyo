@@ -1,7 +1,7 @@
 
 from tkinter import *
 from GridDisplay import gridDisplay
-from matplotlibGraphs import barChart
+from matplotlibGraphs import chartManager
 from CustomEvent import event
 #help for Tkinter https://tkdocs.com/tutorial/ 
 
@@ -59,12 +59,16 @@ vbar.grid(column=1, row=0, sticky=N+S)
 hbar.config(command=gridCanvas.xview)
 hbar.grid(column=0, row=1, sticky=E+W)
 
-testChart = barChart("Hello World", "title of x", "title of y", [1,2,3,4], [10,20,30,40], 6, 4, 100)
-chartCanvas = testChart.getChart(root)
-chartCanvas.get_tk_widget().grid(row=2, column=0)
+
+
+canvasChartManager = chartManager(gridCanvas)
+chartCanvas = canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", [1,2,3,4], [10,20,30,40], 6, 4, 100)
+chartCanvas.grid(row=2, column=0)
+
 
 
 gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
 gridCanvas.bind('<1>', lambda event: handleclicks(event))
 gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
+
 root.mainloop()
