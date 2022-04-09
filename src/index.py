@@ -20,10 +20,13 @@ from matplotlib.backends.backend_tkagg import (
 )
 
 def handleclicks(event):
+   
     if event.state != 1:
+        spreadSheetView.resetDrag()
         spreadSheetView.editCell(event)
     elif event.state == 1:
-        spreadSheetView.deselect()
+        spreadSheetView.resetDrag()
+        spreadSheetView.cancelCellEdit()
         spreadSheetView.select(event.x, event.y, "lightblue")
 
 def handleMovement(event):
@@ -78,7 +81,7 @@ if __name__ == "__main__":
     MainCanvas.columnconfigure(0, weight=1)
     MainCanvas.rowconfigure(0, weight=1)
 
-    gridCanvas = Canvas(MainCanvas, bg="white", xscrollcommand = hbar.set, yscrollcommand=vbar.set)
+    gridCanvas = Canvas(root, bg="white", xscrollcommand = hbar.set, yscrollcommand=vbar.set)
     gridCanvas.grid(column=0, row=0, sticky=N+W+S+E)
     spreadSheetView = gridDisplay(gridCanvas, gridWidth, gridHeight, cellWidth, cellHeight, cellDisplayTextOffsetpxX, cellDisplayTextOffsetpxY, fontsize, maxLettersInCell)
 

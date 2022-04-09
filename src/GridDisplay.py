@@ -51,7 +51,7 @@ class gridDisplay:
         virtualCoords = self.clipToGrid(self.canvas.canvasx(event.x), self.canvas.canvasy(event.y))
         if virtualCoords[0] != 0 and virtualCoords[1] != 0: 
            
-            self.deselect()
+            self.cancelCellEdit()
             
             displayTextBoxId = self.canvas.find_closest(virtualCoords[0], virtualCoords[1])
             self.DisplayTextId = displayTextBoxId[0]+1
@@ -62,17 +62,26 @@ class gridDisplay:
             self.TextCanvasWidget.focus_set()
             self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)
             return self.TextCanvasWidget   
-    def deselect(self):
+    def cancelCellEdit(self):
         if self.DisplayTextId != None and self.TextCanvasWidget != None and self.cellGridValues != None:
             newText = self.TextCanvasWidget.get("1.0", END)
             self.canvas.itemconfig(self.DisplayTextId, text=self.generatePreviewText(newText))
             self.cellGridValues[self.DisplayTextId] = newText
             self.canvas.delete(self.TextCanvasItem)
             self.TextCanvasItem = None
+    
+    def deselect(self):
         if len(self.dragSelectedValues) > 0:
             for val in self.dragSelectedValues.keys():
                 self.canvas.itemconfig(val+1, fill="white")
             self.dragSelectedValues = {}
+    
+    def resetDrag(self):
+        self.dragStart = None
+        self.dragEnd = None 
+        self.deselect()   
+        
+        
 
     def select(self, x, y, fillcolor):
         virtualCoords = self.clipToGrid(self.canvas.canvasx(x), self.canvas.canvasy(y))
@@ -85,18 +94,55 @@ class gridDisplay:
                 self.deselect()
                 self.dragEnd = virtualCoords
             
-            currentX = self.dragStart[0]
-            currentY = self.dragStart[1]
-            endY = self.dragEnd[1]
-            endX = self.dragEnd[0]
-            while currentY <=  endY:
-                while currentX <= endX:
-                    cellBoxID = self.canvas.find_closest(currentX, currentY)
+        
+            
+            #process the different ways a drag end position will influence the positions of the selection box topleft and bottomright corner
+            if self.dragStart[0] < self.dragEnd[0] and self.dragStart[1] < self.dragEnd[1]:
+                leftCornerX = self.dragStart[0]
+                leftCornerY = self.dragStart[1]
+              
+                rightCornerX = self.dragEnd[0]
+                rightCornerY = self.dragEnd[1]
+            elif self.dragStart[0] > self.dragEnd[0] and self.dragStart[1] > self.dragEnd[1]:
+                leftCornerX = self.dragEnd[0]
+                leftCornerY = self.dragEnd[1]
+              
+                rightCornerX = self.dragStart[0]
+                rightCornerY = self.dragStart[1]
+               
+            elif self.dragStart[0] < self.dragEnd[0] and self.dragStart[1] > self.dragEnd[1]:
+                leftCornerX = self.dragStart[0]
+                leftCornerY = self.dragEnd[1]
+               
+                rightCornerX = self.dragEnd[0]
+                rightCornerY = self.dragStart[1]
+            
+            elif self.dragStart[0] > self.dragEnd[0] and self.dragStart[1] < self.dragEnd[1]:
+                leftCornerX = self.dragEnd[0]
+                leftCornerY = self.dragStart[1]
+              
+                rightCornerX = self.dragStart[0]
+                rightCornerY = self.dragEnd[1]
+            else:
+                #this handles the situation where dragstart and dragend are on the same cell
+                leftCornerX = self.dragStart[0]
+                leftCornerY = self.dragStart[1]
+               
+                rightCornerX = self.dragEnd[0]
+                rightCornerY = self.dragEnd[1]
+            
+            travellerX = leftCornerX
+            travellerY = leftCornerY
+            while travellerY <=  rightCornerY:
+                while travellerX <= rightCornerX:
+                    cellBoxID = self.canvas.find_closest(travellerX, travellerY)
                     self.canvas.itemconfig(cellBoxID, fill=fillcolor)
                     self.dragSelectedValues[cellBoxID[0]-1] = True
-                    currentX += self.cellWidth
-                currentY += self.cellHeight
-                currentX = self.dragStart[0]
+                    travellerX += self.cellWidth
+               
+                travellerY += self.cellHeight
+                travellerX = leftCornerX
+           
          
            
        
