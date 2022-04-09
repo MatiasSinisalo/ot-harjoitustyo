@@ -26,7 +26,7 @@ class barChart:
         self.axes.set_ylabel(self.yTitle)
         self.axes.set_xlabel(self.xTitle)
     
-    def getChart(self, app):
-        return FigureCanvasTkAgg(self.figure)
+    def getChart(self, parent):
+        return FigureCanvasTkAgg(self.figure, parent)
 
    
