@@ -2,14 +2,8 @@
 import tkinter as tk
 from turtle import width
 import matplotlib
-
 from BarChart import barChart
-
 matplotlib.use('TkAgg')
-
-
-
-
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg
@@ -27,6 +21,7 @@ class chartManager:
         ChartMatPlotItem = newChart.getChart(self.parent)
         ChartWidget = ChartMatPlotItem.get_tk_widget()
         ChartWidget.bind("<Motion>", lambda event: self.onChartDrag(event))
+        ChartWidget.bind("<Delete>", lambda event: self.deleteChart(event))
         ChartWidgetWindowid = self.parent.create_window(xpos, ypos, window=ChartWidget)
         self.CanvasItems[ChartWidget] = (ChartWidgetWindowid, ChartMatPlotItem)
         return ChartWidget
@@ -41,7 +36,9 @@ class chartManager:
             val[1].draw_idle()
         return 0
 
-           
+    def deleteChart(self, event):
+        self.parent.delete(event.widget)
+
            
          
    

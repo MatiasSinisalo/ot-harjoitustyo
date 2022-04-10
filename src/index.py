@@ -16,18 +16,18 @@ from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg
 )
 
-def handleclicks(event):
+def handleClicks(event):
     spreadSheetView.resetDrag()
     spreadSheetView.cancelCellEdit()
-    if event.state != 1:
-      
-        spreadSheetView.editCell(event)
-    elif event.state == 1:
-       
-        spreadSheetView.select(event.x, event.y, "lightblue")
+    if event.widget._name == "gridCanvas":
+        if event.state != 1:
+            spreadSheetView.editCell(event)
+        elif event.state == 1:   
+            spreadSheetView.select(event.x, event.y, "lightblue")
 
 def handleMovement(event):
-    #event.state = 257 
+    
+   
     if event.state == 257:
         spreadSheetView.select(event.x, event.y, "lightblue")
       
@@ -59,7 +59,6 @@ def setYValuesForNextChart():
 def createNewChart():
     global xValuesForChart
     global yValuesForChart
-    print("hi")
     canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", xValuesForChart, yValuesForChart, 20, 10, 50, 500, 500)
 
 if __name__ == "__main__":
@@ -98,7 +97,7 @@ if __name__ == "__main__":
     hbar=Scrollbar(MainCanvasContainer, orient=HORIZONTAL)
     vbar=Scrollbar(MainCanvasContainer, orient=VERTICAL)
 
-    gridCanvas = Canvas(MainCanvasContainer, bg="white", xscrollcommand = hbar.set, yscrollcommand=vbar.set)
+    gridCanvas = Canvas(MainCanvasContainer, bg="white", xscrollcommand = hbar.set, yscrollcommand=vbar.set, name="gridCanvas")
     gridCanvas.grid(column=0, row=0, sticky=N+W+S+E)
     spreadSheetView = gridDisplay(gridCanvas, gridWidth, gridHeight, cellWidth, cellHeight, cellDisplayTextOffsetpxX, cellDisplayTextOffsetpxY, fontsize, maxLettersInCell)
 
@@ -135,7 +134,8 @@ if __name__ == "__main__":
 
 
     gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
-    root.bind('<1>', lambda event: handleclicks(event))
+    
+    root.bind('<1>', lambda event: handleClicks(event))
     gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
 
     root.mainloop()

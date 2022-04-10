@@ -58,9 +58,9 @@ class gridDisplay:
             textOfDisplayBox = self.cellGridValues[self.DisplayTextId]
             self.TextCanvasWidget = Text(self.canvas, state=NORMAL, font=str(self.fontSize))
             self.TextCanvasWidget.insert("1.0", textOfDisplayBox)
-        
+            self.TextCanvasWidget.lower()
             self.TextCanvasWidget.focus_set()
-            self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)
+            self.TextCanvasItem = self.canvas.create_window(virtualCoords[0], virtualCoords[1],width=self.cellWidth, height=self.cellHeight, anchor=NW, window=self.TextCanvasWidget)  
             return self.TextCanvasWidget   
     def cancelCellEdit(self):
         if self.DisplayTextId != None and self.TextCanvasWidget != None and self.cellGridValues != None:
