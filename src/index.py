@@ -111,11 +111,11 @@ if __name__ == "__main__":
     barChartConfigurerView = Frame(canvasConfigurerView)
     barChartConfigurerView.grid(column=0, row=0)
 
-    xValuesForChart = []
+    xValuesForChart = [0]
     setXValuesForChart = Button(barChartConfigurerView, text="aseta valinta kaavion X arvoksi", command= lambda: setXValuesForNextChart())
     setXValuesForChart.grid(column=0, row=1)
     
-    yValuesForChart = []
+    yValuesForChart = [0]
     setYValuesForChart = Button(barChartConfigurerView, text="aseta valinta kaavion Y arvoksi", command= lambda: setYValuesForNextChart())
     setYValuesForChart.grid(column=0, row=2)
     
