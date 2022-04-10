@@ -7,9 +7,9 @@ from matplotlibGraphs import chartManager
 
 
 def handleClicks(event):
-    spreadSheetView.resetDrag()
-    spreadSheetView.cancelCellEdit()
     if event.widget._name == "gridCanvas":
+        spreadSheetView.resetDrag()
+        spreadSheetView.cancelCellEdit()
         if event.state != 1:
             spreadSheetView.editCell(event)
         elif event.state == 1:   
