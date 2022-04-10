@@ -1,8 +1,6 @@
 
 #help for Tkinter https://tkdocs.com/tutorial/ 
 from tkinter import *
-from turtle import width
-from matplotlib.pyplot import text
 from GridDisplay import gridDisplay
 from matplotlibGraphs import chartManager
 
@@ -19,13 +17,13 @@ from matplotlib.backends.backend_tkagg import (
 )
 
 def handleclicks(event):
-   
+    spreadSheetView.resetDrag()
+    spreadSheetView.cancelCellEdit()
     if event.state != 1:
-        spreadSheetView.resetDrag()
+      
         spreadSheetView.editCell(event)
     elif event.state == 1:
-        spreadSheetView.resetDrag()
-        spreadSheetView.cancelCellEdit()
+       
         spreadSheetView.select(event.x, event.y, "lightblue")
 
 def handleMovement(event):
@@ -115,7 +113,7 @@ if __name__ == "__main__":
 
     
     canvasChartManager = chartManager(gridCanvas)
-   # chartCanvas = canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", [1,2,3,4], [10,20,30,40], 20, 10, 50, 500, 500)
+  
    
     canvasConfigurerView = Frame(root, width=300, bg="white")
     canvasConfigurerView.grid(column=2, row=0, sticky=N+W+S+E)
@@ -137,7 +135,7 @@ if __name__ == "__main__":
 
 
     gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
-    gridCanvas.bind('<1>', lambda event: handleclicks(event))
+    root.bind('<1>', lambda event: handleclicks(event))
     gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
 
     root.mainloop()
