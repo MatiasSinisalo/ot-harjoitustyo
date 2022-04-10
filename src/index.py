@@ -1,18 +1,12 @@
 
-from doctest import master
-from email.policy import strict
+#help for Tkinter https://tkdocs.com/tutorial/ 
 from tkinter import *
 from turtle import width
 from matplotlib.pyplot import text
-
-from sqlalchemy import column
-
-
 from GridDisplay import gridDisplay
 from matplotlibGraphs import chartManager
-from BarChart import barChart
 
-#help for Tkinter https://tkdocs.com/tutorial/ 
+
 import matplotlib
 
 matplotlib.use('TkAgg')
