@@ -5,16 +5,6 @@ from GridDisplay import gridDisplay
 from matplotlibGraphs import chartManager
 
 
-import matplotlib
-
-matplotlib.use('TkAgg')
-
-#help from https://www.pythontutorial.net/tkinter/tkinter-matplotlib/ 
-#for creating bar charts and integrating them to tkinter
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg
-)
 
 def handleClicks(event):
     spreadSheetView.resetDrag()
