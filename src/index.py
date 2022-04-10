@@ -45,11 +45,15 @@ def handleYScroll(a, b):
     return
 
 def setXValuesForNextChart():
+    
     global xValuesForChart
+    xValuesForChart = []
     for key in spreadSheetView.dragSelectedValues:
         xValuesForChart.append(spreadSheetView.cellGridValues[key])
+        
 def setYValuesForNextChart():
     global yValuesForChart
+    yValuesForChart = []
     for key in spreadSheetView.dragSelectedValues:
         yValuesForChart.append(spreadSheetView.cellGridValues[key])
 
