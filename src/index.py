@@ -24,13 +24,14 @@ def handleClicks(event):
             spreadSheetView.editCell(event)
         elif event.state == 1:   
             spreadSheetView.select(event.x, event.y, "lightblue")
+    elif event.widget.widgetName == "chartWidget":
+         event.widget.focus_set()
 
 def handleMovement(event):
-    
-   
     if event.state == 257:
         spreadSheetView.select(event.x, event.y, "lightblue")
-      
+
+
 
 def handleXScroll(a, b):
     gridCanvas.xview(a, b)
@@ -80,7 +81,7 @@ if __name__ == "__main__":
     menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
 
 
- 
+    pointedWidget = None
     gridWidth = 100
     gridHeight = 100
     cellWidth = 200
@@ -137,5 +138,4 @@ if __name__ == "__main__":
     
     root.bind('<1>', lambda event: handleClicks(event))
     gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
-
     root.mainloop()

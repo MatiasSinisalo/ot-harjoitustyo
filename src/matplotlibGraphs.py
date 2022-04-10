@@ -20,9 +20,12 @@ class chartManager:
         newChart = barChart(title, xTitle, yTitle, xValues, yValues, sizeX, sizeY, dotsPerInch)
         ChartMatPlotItem = newChart.getChart(self.parent)
         ChartWidget = ChartMatPlotItem.get_tk_widget()
+        ChartWidget.config(highlightcolor="lightblue", highlightthickness=3)
+        ChartWidget.widgetName = "chartWidget"
         ChartWidget.bind("<Motion>", lambda event: self.onChartDrag(event))
         ChartWidget.bind("<Delete>", lambda event: self.deleteChart(event))
         ChartWidgetWindowid = self.parent.create_window(xpos, ypos, window=ChartWidget)
+     
         self.CanvasItems[ChartWidget] = (ChartWidgetWindowid, ChartMatPlotItem)
         return ChartWidget
 
@@ -37,7 +40,8 @@ class chartManager:
         return 0
 
     def deleteChart(self, event):
-        self.parent.delete(event.widget)
+        self.parent.delete(self.CanvasItems[event.widget][0])
+        self.CanvasItems.pop(event.widget)
 
            
          
