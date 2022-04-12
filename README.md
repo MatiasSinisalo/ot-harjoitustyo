@@ -4,6 +4,9 @@
 1. asenna riippuvuudet: poetry install  
 2. suorita: poetry run invoke start  
 
+# Ohjelman pytest ei ole toiminallinen palautuksessa 4
+
+
 -------------
 
 [Vaativuus määrittely](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/vaativuusmaarittely.md)  
