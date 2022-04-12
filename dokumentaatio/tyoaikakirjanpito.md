@@ -8,6 +8,7 @@
 |8.4.2022       |   5            |
 |9.4.2022       |   2            |
 |10.4.2022      |   3            |
+|12.4.2022      |   3            |
 
 3.4.2022:
 Projektin alustus ja taulukkolaskentanäkymän kehityksen aloitus
@@ -26,5 +27,9 @@ Ruutujen valitseminen toimii nyt jokaiseen suuntaan ja käyttäjä voi lisätä 
 
 10.4 
 toteutettiin kaavion poistamisen toiminnallisuus ja siistittiin ohjelman koodia.
+
+12.4
+otetiin pylint käyttöön
+
 ------------------
-Työtunnit yhteensä: 26 h
+Työtunnit yhteensä: 29 h
