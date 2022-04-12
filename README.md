@@ -15,4 +15,5 @@
 
 [changelog tiedosto](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+[arkkitehtuuri](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
