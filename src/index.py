@@ -1,56 +1,59 @@
 
-#help for Tkinter https://tkdocs.com/tutorial/ 
-from tkinter import *
-from GridDisplay import gridDisplay
-from matplotlibGraphs import chartManager
+# help for Tkinter https://tkdocs.com/tutorial/
+
+from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Menu, Scrollbar, Tk
+from grid_display import GridDisplay
+from matplotlib_graphs import ChartManager
 
 
-
-def handleClicks(event):
-    if event.widget._name == "gridCanvas":
-        spreadSheetView.resetDrag()
-        spreadSheetView.cancelCellEdit()
+def handle_clicks(event):
+    if event.widget.widgetName == "gridCanvas":
+        spreadSheetView.reset_drag()
+        spreadSheetView.cancel_cell_edit()
         if event.state != 1:
-            spreadSheetView.editCell(event)
-        elif event.state == 1:   
+            spreadSheetView.edit_cell(event)
+        elif event.state == 1:
             spreadSheetView.select(event.x, event.y, "lightblue")
     elif event.widget.widgetName == "chartWidget":
-         event.widget.focus_set()
+        event.widget.focus_set()
 
-def handleMovement(event):
+
+def handle_movement(event):
     if event.state == 257:
         spreadSheetView.select(event.x, event.y, "lightblue")
 
 
-
-def handleXScroll(a, b):
-    gridCanvas.xview(a, b)
-    canvasChartManager.updateAllCharts()  
-    return
-def handleYScroll(a, b):
-    gridCanvas.yview(a, b)
-    canvasChartManager.updateAllCharts()
-  
-    return
-
-def setXValuesForNextChart():
-    
-    global xValuesForChart
-    xValuesForChart = []
-    for key in spreadSheetView.dragSelectedValues:
-        xValuesForChart.append(spreadSheetView.cellGridValues[key])
-        
-def setYValuesForNextChart():
-    global yValuesForChart
-    yValuesForChart = []
-    for key in spreadSheetView.dragSelectedValues:
-        yValuesForChart.append(spreadSheetView.cellGridValues[key])
+def handle_x_scroll(a_val, b_val):
+    gridCanvas.xview(a_val, b_val)
+    canvasChartManager.update_all_charts()
 
 
-def createNewChart():
-    global xValuesForChart
-    global yValuesForChart
-    canvasChartManager.addNewBarChart("Hello World", "title of x", "title of y", xValuesForChart, yValuesForChart, 20, 10, 50, 500, 500)
+def handle_y_scroll(a_val, b_val):
+    gridCanvas.yview(a_val,  b_val)
+    canvasChartManager.update_all_charts()
+
+
+def set_x_values_for_next_chart():
+
+    global x_values_for_chart
+    x_values_for_chart = []
+    for key in spreadSheetView.drag_selected_values:
+        x_values_for_chart.append(spreadSheetView.cell_grid_values[key])
+
+
+def set_y_values_for_next_chart():
+    global y_values_for_chart
+    y_values_for_chart = []
+    for key in spreadSheetView.drag_selected_values:
+        y_values_for_chart.append(spreadSheetView.cell_grid_values[key])
+
+
+def create_new_chart():
+
+    canvasChartManager.add_new_bar_chart(
+        "Hello World", "title of x", "title of y",
+        x_values_for_chart, y_values_for_chart, 20, 10, 50, 500, 500)
+
 
 if __name__ == "__main__":
     root = Tk()
@@ -70,62 +73,65 @@ if __name__ == "__main__":
     menu_edit = Menu(menubar)
     menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
 
+    POINTED_WIDGET = None
+    GRID_WIDTH = 100
+    GRID_HEIGHT = 100
+    CELL_WIDTH = 200
+    CELL_HEIGHT = 50
+    CELL_DISPLAY_TEXT_OFFSET_PX_X = 1
+    CELL_DISPLAY_TEXT_OFFSET_PX_Y = 3
+    FONT_SIZE = 12
+    MAX_LETTERS_IN_CELL = 20
 
-    pointedWidget = None
-    gridWidth = 100
-    gridHeight = 100
-    cellWidth = 200
-    cellHeight = 50
-    cellDisplayTextOffsetpxX = 1
-    cellDisplayTextOffsetpxY = 3
-    fontsize = 12
-    maxLettersInCell = 20
+    main_canvas_container = Frame(root, bg="white")
+    main_canvas_container.grid(column=0, row=0, sticky=N+W+S+E)
+    main_canvas_container.columnconfigure(0, weight=1)
+    main_canvas_container.rowconfigure(0, weight=1)
+    hbar = Scrollbar(main_canvas_container, orient=HORIZONTAL)
+    vbar = Scrollbar(main_canvas_container, orient=VERTICAL)
 
-    MainCanvasContainer = Frame(root, bg="white")
-    MainCanvasContainer.grid(column=0, row=0, sticky=N+W+S+E)
-    MainCanvasContainer.columnconfigure(0, weight=1)
-    MainCanvasContainer.rowconfigure(0, weight=1)
-    hbar=Scrollbar(MainCanvasContainer, orient=HORIZONTAL)
-    vbar=Scrollbar(MainCanvasContainer, orient=VERTICAL)
-
-    gridCanvas = Canvas(MainCanvasContainer, bg="white", xscrollcommand = hbar.set, yscrollcommand=vbar.set, name="gridCanvas")
+    gridCanvas = Canvas(main_canvas_container, bg="white",
+                        xscrollcommand=hbar.set, yscrollcommand=vbar.set)
+    gridCanvas.widgetName = "gridCanvas"
     gridCanvas.grid(column=0, row=0, sticky=N+W+S+E)
-    spreadSheetView = gridDisplay(gridCanvas, gridWidth, gridHeight, cellWidth, cellHeight, cellDisplayTextOffsetpxX, cellDisplayTextOffsetpxY, fontsize, maxLettersInCell)
+    spreadSheetView = GridDisplay(gridCanvas, GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT,
+                                  CELL_DISPLAY_TEXT_OFFSET_PX_X, CELL_DISPLAY_TEXT_OFFSET_PX_Y,
+                                  FONT_SIZE, MAX_LETTERS_IN_CELL)
 
-
-    vbar.config(command=handleYScroll)
+    vbar.config(command=handle_y_scroll)
     vbar.grid(column=1, row=0, sticky=N+S)
 
-
-    hbar.config(command=handleXScroll)
+    hbar.config(command=handle_x_scroll)
     hbar.grid(column=0, row=1, sticky=E+W)
 
+    canvasChartManager = ChartManager(gridCanvas)
 
-    
-    canvasChartManager = chartManager(gridCanvas)
-  
-   
     canvasConfigurerView = Frame(root, width=300, bg="white")
     canvasConfigurerView.grid(column=2, row=0, sticky=N+W+S+E)
 
     barChartConfigurerView = Frame(canvasConfigurerView)
     barChartConfigurerView.grid(column=0, row=0)
 
-    xValuesForChart = [0]
-    setXValuesForChart = Button(barChartConfigurerView, text="aseta valinta kaavion X arvoksi", command= lambda: setXValuesForNextChart())
+    x_values_for_chart = [0]
+    setXValuesForChart = Button(
+        barChartConfigurerView, text="aseta valinta kaavion X arvoksi",
+        command=lambda: set_x_values_for_next_chart())
     setXValuesForChart.grid(column=0, row=1)
-    
-    yValuesForChart = [0]
-    setYValuesForChart = Button(barChartConfigurerView, text="aseta valinta kaavion Y arvoksi", command= lambda: setYValuesForNextChart())
+
+    y_values_for_chart = [0]
+    setYValuesForChart = Button(
+        barChartConfigurerView, text="aseta valinta kaavion Y arvoksi",
+        command=lambda: set_y_values_for_next_chart())
     setYValuesForChart.grid(column=0, row=2)
-    
-    
-    addNewBarChartButton = Button(barChartConfigurerView, text="Lisaa uusi pylvaskaavio", command=lambda: createNewChart())
+
+    addNewBarChartButton = Button(
+        barChartConfigurerView, text="Lisaa uusi pylvaskaavio",
+        command=lambda: create_new_chart())
     addNewBarChartButton.grid(column=0, row=3)
 
+    gridCanvas.configure(
+        scrollregion=[0, 0, GRID_WIDTH*CELL_WIDTH, GRID_HEIGHT*CELL_HEIGHT])
 
-    gridCanvas.configure(scrollregion = [0, 0, gridWidth*cellWidth, gridHeight*cellHeight])
-    
-    root.bind('<1>', lambda event: handleClicks(event))
-    gridCanvas.bind('<Motion>', lambda event: handleMovement(event))
+    root.bind('<1>', handle_clicks)
+    gridCanvas.bind('<Motion>', handle_movement)
     root.mainloop()
