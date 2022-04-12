@@ -29,7 +29,7 @@ Ruutujen valitseminen toimii nyt jokaiseen suuntaan ja käyttäjä voi lisätä 
 toteutettiin kaavion poistamisen toiminnallisuus ja siistittiin ohjelman koodia.
 
 12.4
-otetiin pylint käyttöön
+otetiin pylint käyttöön ja toteutettiin testejä kaavioille
 
 ------------------
 Työtunnit yhteensä: 29 h

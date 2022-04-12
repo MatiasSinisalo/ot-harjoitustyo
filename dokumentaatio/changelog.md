@@ -11,7 +11,7 @@ Käyttäjä voi raahata pylväskaavioita ruudukossa
 
 Käyttäjä voi poistaa pylväskaavion klikkaamalla kaaviota jonka hän haluaa poistaa ja painamalla DELETE
 
-
+Testit tarkistavat matplotlib_graphs moduulin toiminnallisuudesta pylvaskaavion luomisen ja kaavion raahaamisen
 
 # Viikko 3  
 - sovelluksessa on toimiva spreadsheet tyylinen käyttöliittymä, missä käyttäjä voi muokata ruutujen arvoja klikkaamalla haluamaansa ruutua ja syöttämällä tekstiä.  
