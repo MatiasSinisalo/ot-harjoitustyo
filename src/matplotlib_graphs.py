@@ -27,7 +27,8 @@ class ChartManager:
         self.canvas_items[chart_widget] = (
             chart_widget_windowid, chart_matplot_item)
         return chart_widget
-
+    def get_barchart_widget_canvas_item(self, widget_id):
+        return self.canvas_items[widget_id][0]
     def on_chart_drag(self, event):
         if event.state == 256:
             self.parent.move(
