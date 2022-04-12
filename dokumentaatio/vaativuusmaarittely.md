@@ -7,9 +7,12 @@ Taulukkolaskentasovelluksen avulla käyttäjä pystyy järjestämään tietoa ta
 
 ### Sovelluksen pääasialliset toiminnallisuudet  
 
-- Käyttäjä voi syöttää tietoa (tekstiä, numeroita, kaavoja) taulukkoon.    
+- [X] Käyttäjä voi syöttää tietoa (tekstiä, numeroita) taulukkoon.
 
-- Käyttäjä voi luoda visuaallisen esityksen syöttämästään tiedosta esimerkiksi Pie taulukon, viiva taulukon tai pylväs kaavion.  
+- Käyttäjä voi luoda visuaallisen esityksen syöttämästään tiedosta esimerkiksi 
+  - Pie taulukon 
+  -  viiva taulukon
+  -  [X] pylväs kaavion  
 
 - Käyttäjä voi tehdä yksinkertaisia matemaattisia laskutoimituksia taulukossa olevalla tiedolla.
 
