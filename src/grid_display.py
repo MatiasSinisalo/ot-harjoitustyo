@@ -26,6 +26,7 @@ class GridDisplay:
         self.drag_selected_values = {}
         self.drag_start = None
         self.drag_end = None
+        cell_number = 0
         for column in range(grid_width):
             for row in range(grid_height):
                 if column == 0 and row == 0:
@@ -38,8 +39,9 @@ class GridDisplay:
                     cell_value = f"C: {column}"
                     fill_color = "lightgray"
                 else:
-                    cell_value = ""
+                    cell_value = f"{cell_number}"
                     fill_color = "white"
+                    cell_number += 1
                 self.canvas.create_rectangle(column*self.cell_width, row*cell_height,
                                              column*self.cell_width + self.cell_width,
                                              row*self.cell_height+self.cell_height,
@@ -83,6 +85,7 @@ class GridDisplay:
                 virtual_coords[0], virtual_coords[1],
                 width=self.cell_width, height=self.cell_height,
                 anchor=NW, window=self.text_canvas_widget)
+        return self.text_canvas_widget
 
     def cancel_cell_edit(self):
         if self.display_text_id is not None and self.text_canvas_widget is not None and self.cell_grid_values is not None:
