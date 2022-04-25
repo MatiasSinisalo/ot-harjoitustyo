@@ -54,8 +54,13 @@ def create_new_chart():
         x_values_for_chart, y_values_for_chart, 20, 10, 50, 500, 500)
 
 def setAnswerTextToSum():
-    sumString = spreadSheetView.GetSumOfSelection()
-    sumResultText.config(text = sumString)
+    answer = spreadSheetView.GetSumOfSelection()
+    sumResultText.config(text = answer)
+
+def setAnswerTextToAverage():
+    answer = spreadSheetView.GetAverageOfSelection()
+    averageResultText.config(text = answer)
+
 if __name__ == "__main__":
     root = Tk()
     root.option_add('*tearOff', False)
@@ -138,15 +143,22 @@ if __name__ == "__main__":
     calculationsView = Frame(canvasConfigurerView, width=300, bg="lightgray")
     calculationsView.grid(column=0, row=2,  sticky=N+W+S+E,  pady=10, padx=10)
 
-    GetSumOfCalculationButton = Button(calculationsView, text="Laske valinnan summa", 
+    GetSumOfSelectionButton = Button(calculationsView, text="Laske valinnan summa", 
                                         command=setAnswerTextToSum)
-    GetSumOfCalculationButton.grid(column=0, row=1, sticky=E+W)
+    GetSumOfSelectionButton.grid(column=0, row=1, sticky=E+W)
     
     sumResultText = Label(calculationsView)
     sumResultText.grid(column=0, row=2, sticky=E+W)
+
+    GetAverageOfSelectionButton = Button(calculationsView, text="Laske valinnan keskiarvo", 
+                                        command=setAnswerTextToAverage)
+    GetAverageOfSelectionButton.grid(column=0, row=3, sticky=E+W)
+    
+    averageResultText = Label(calculationsView)
+    averageResultText.grid(column=0, row=4, sticky=E+W)
     
 
-
+    
   
     root.bind('<1>', handle_clicks)
     gridCanvas.bind('<Motion>', handle_movement)

@@ -174,7 +174,6 @@ class GridDisplay:
                 traveller_y += self.cell_height
                 traveller_x = left_corner_x
             
-            
     def GetSumOfSelection(self):
         answerString = ""
         sum = 0
@@ -185,8 +184,17 @@ class GridDisplay:
                 answerString = f"Arvoa ei voitu kääntää luvuksi: '{val}'"
                 return answerString
                 break
-        answerString = str(sum)
-        return answerString
+        return sum
+
+    def GetAverageOfSelection(self):
+        sum = self.GetSumOfSelection()
+        if isinstance(sum, str):
+            return sum
+        else:
+            return sum / len(self.drag_selected_values)
+        
+
+
 
     def generate_preview_text(self, text):
         return text.replace("\n", "")[:self.max_letters_in_cell]
