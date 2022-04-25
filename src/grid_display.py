@@ -74,13 +74,17 @@ class GridDisplay:
 
             display_text_box_id = self.canvas.find_closest(
                 virtual_coords[0], virtual_coords[1])
+           
             self.display_text_id = display_text_box_id[0]+1
             text_of_display_box = self.cell_grid_values[self.display_text_id]
+           
             self.text_canvas_widget = Text(
                 self.canvas, state=NORMAL, font=str(self.font_size))
+           
             self.text_canvas_widget.insert("1.0", text_of_display_box)
             self.text_canvas_widget.lower()
             self.text_canvas_widget.focus_set()
+           
             self.text_canvas_item = self.canvas.create_window(
                 virtual_coords[0], virtual_coords[1],
                 width=self.cell_width, height=self.cell_height,
@@ -90,16 +94,19 @@ class GridDisplay:
     def cancel_cell_edit(self):
         if self.display_text_id is not None and self.text_canvas_widget is not None and self.cell_grid_values is not None:
             new_text = self.text_canvas_widget.get("1.0", END)
+          
             self.canvas.itemconfig(
                 self.display_text_id, text=self.generate_preview_text(new_text))
+          
             self.cell_grid_values[self.display_text_id] = new_text
+          
             self.canvas.delete(self.text_canvas_item)
             self.text_canvas_item = None
 
     def deselect(self):
         if len(self.drag_selected_values) > 0:
             for val in self.drag_selected_values.keys():
-                self.canvas.itemconfig(val+1, fill="white")
+                self.canvas.itemconfig(val-1, fill="white")
             self.drag_selected_values = {}
 
     def reset_drag(self):
@@ -161,11 +168,12 @@ class GridDisplay:
                     cell_box_id = self.canvas.find_closest(
                         traveller_x, traveller_y)
                     self.canvas.itemconfig(cell_box_id, fill=fillcolor)
-                    self.drag_selected_values[cell_box_id[0]-1] = True
+                    self.drag_selected_values[cell_box_id[0]+1] = self.cell_grid_values[cell_box_id[0]+1]
                     traveller_x += self.cell_width
 
                 traveller_y += self.cell_height
                 traveller_x = left_corner_x
+            print(self.drag_selected_values)
 
     def generate_preview_text(self, text):
         return text.replace("\n", "")[:self.max_letters_in_cell]

@@ -49,7 +49,6 @@ def set_y_values_for_next_chart():
 
 
 def create_new_chart():
-
     canvasChartManager.add_new_bar_chart(
         "Hello World", "title of x", "title of y",
         x_values_for_chart, y_values_for_chart, 20, 10, 50, 500, 500)
@@ -73,6 +72,16 @@ if __name__ == "__main__":
     menu_edit = Menu(menubar)
     menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
 
+    
+
+    main_canvas_container = Frame(root, bg="white")
+    main_canvas_container.grid(column=0, row=0, sticky=N+W+S+E)
+    main_canvas_container.columnconfigure(0, weight=1)
+    main_canvas_container.rowconfigure(0, weight=1)
+    hbar = Scrollbar(main_canvas_container, orient=HORIZONTAL)
+    vbar = Scrollbar(main_canvas_container, orient=VERTICAL)
+
+
     POINTED_WIDGET = None
     GRID_WIDTH = 100
     GRID_HEIGHT = 100
@@ -82,14 +91,6 @@ if __name__ == "__main__":
     CELL_DISPLAY_TEXT_OFFSET_PX_Y = 3
     FONT_SIZE = 12
     MAX_LETTERS_IN_CELL = 20
-
-    main_canvas_container = Frame(root, bg="white")
-    main_canvas_container.grid(column=0, row=0, sticky=N+W+S+E)
-    main_canvas_container.columnconfigure(0, weight=1)
-    main_canvas_container.rowconfigure(0, weight=1)
-    hbar = Scrollbar(main_canvas_container, orient=HORIZONTAL)
-    vbar = Scrollbar(main_canvas_container, orient=VERTICAL)
-
     gridCanvas = Canvas(main_canvas_container, bg="white",
                         xscrollcommand=hbar.set, yscrollcommand=vbar.set)
     gridCanvas.widgetName = "gridCanvas"
@@ -97,6 +98,9 @@ if __name__ == "__main__":
     spreadSheetView = GridDisplay(gridCanvas, GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT,
                                   CELL_DISPLAY_TEXT_OFFSET_PX_X, CELL_DISPLAY_TEXT_OFFSET_PX_Y,
                                   FONT_SIZE, MAX_LETTERS_IN_CELL)
+    
+    gridCanvas.configure(
+        scrollregion=[0, 0, GRID_WIDTH*CELL_WIDTH, GRID_HEIGHT*CELL_HEIGHT])
 
     vbar.config(command=handle_y_scroll)
     vbar.grid(column=1, row=0, sticky=N+S)
@@ -129,9 +133,7 @@ if __name__ == "__main__":
         command=lambda: create_new_chart())
     addNewBarChartButton.grid(column=0, row=3)
 
-    gridCanvas.configure(
-        scrollregion=[0, 0, GRID_WIDTH*CELL_WIDTH, GRID_HEIGHT*CELL_HEIGHT])
-
+  
     root.bind('<1>', handle_clicks)
     gridCanvas.bind('<Motion>', handle_movement)
     root.mainloop()
