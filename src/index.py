@@ -1,7 +1,7 @@
 
 # help for Tkinter https://tkdocs.com/tutorial/
 
-from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Menu, Scrollbar, Tk
+from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, Text, Tk
 from grid_display import GridDisplay
 from matplotlib_graphs import ChartManager
 
@@ -53,7 +53,9 @@ def create_new_chart():
         "Hello World", "title of x", "title of y",
         x_values_for_chart, y_values_for_chart, 20, 10, 50, 500, 500)
 
-
+def setAnswerTextToSum():
+    sumString = spreadSheetView.GetSumOfSelection()
+    sumResultText.config(text = sumString)
 if __name__ == "__main__":
     root = Tk()
     root.option_add('*tearOff', False)
@@ -113,8 +115,8 @@ if __name__ == "__main__":
     canvasConfigurerView = Frame(root, width=300, bg="white")
     canvasConfigurerView.grid(column=2, row=0, sticky=N+W+S+E)
 
-    barChartConfigurerView = Frame(canvasConfigurerView)
-    barChartConfigurerView.grid(column=0, row=0)
+    barChartConfigurerView = Frame(canvasConfigurerView, width=300, bg="lightgray")
+    barChartConfigurerView.grid(column=0, row=0, pady=10, padx=10)
 
     x_values_for_chart = [0]
     setXValuesForChart = Button(
@@ -132,6 +134,18 @@ if __name__ == "__main__":
         barChartConfigurerView, text="Lisaa uusi pylvaskaavio",
         command=lambda: create_new_chart())
     addNewBarChartButton.grid(column=0, row=3)
+
+    calculationsView = Frame(canvasConfigurerView, width=300, bg="lightgray")
+    calculationsView.grid(column=0, row=2,  sticky=N+W+S+E,  pady=10, padx=10)
+
+    GetSumOfCalculationButton = Button(calculationsView, text="Laske valinnan summa", 
+                                        command=setAnswerTextToSum)
+    GetSumOfCalculationButton.grid(column=0, row=1, sticky=E+W)
+    
+    sumResultText = Label(calculationsView)
+    sumResultText.grid(column=0, row=2, sticky=E+W)
+    
+
 
   
     root.bind('<1>', handle_clicks)
