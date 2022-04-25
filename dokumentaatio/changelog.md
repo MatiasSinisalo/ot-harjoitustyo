@@ -2,7 +2,11 @@
 
 Käyttäjä voi luoda lisäämästään tiedosta piirakkakaavion  
 
-Käyttäjä voi laskea valitsemistaan arvoista summan ja keskiarvon  
+Käyttäjä voi laskea valitsemistaan arvoista summan ja keskiarvon 
+
+testit kattavat piirakkakaavion luomisen ja raahauksen.
+
+testit kattavat summan ja keskiarvon laskemisen
 
 # Viikko 4  
 
