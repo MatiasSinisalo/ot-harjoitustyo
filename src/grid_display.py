@@ -193,7 +193,7 @@ class GridDisplay:
         else:
             return sum / len(self.drag_selected_values)
         
-
+    
 
 
     def generate_preview_text(self, text):

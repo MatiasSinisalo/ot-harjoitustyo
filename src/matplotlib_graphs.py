@@ -2,6 +2,7 @@
 
 import matplotlib
 from bar_chart import BarChart
+from pie_chart import PieChart
 
 matplotlib.use('TkAgg')
 
@@ -27,8 +28,29 @@ class ChartManager:
         self.canvas_items[chart_widget] = (
             chart_widget_windowid, chart_matplot_item)
         return chart_widget
-    def get_barchart_widget_canvas_item(self, widget_id):
+    
+    def add_new_pie_chart(self, title, x_title, y_title, x_values, y_values,
+                          size_x, size_y, dots_per_inch, xpos, ypos):
+       
+        new_chart = PieChart(title, x_title, y_title, x_values,
+                             y_values, size_x, size_y, dots_per_inch)
+       
+        chart_matplot_item = new_chart.get_chart(self.parent)
+        chart_widget = chart_matplot_item.get_tk_widget()
+        chart_widget.config(highlightcolor="lightblue", highlightthickness=3)
+        chart_widget.widgetName = "chartWidget"
+        chart_widget.bind("<Motion>", self.on_chart_drag)
+        chart_widget.bind("<Delete>", self.delete_chart)
+        chart_widget_windowid = self.parent.create_window(
+            xpos, ypos, window=chart_widget)
+
+        self.canvas_items[chart_widget] = (
+            chart_widget_windowid, chart_matplot_item)
+        return chart_widget
+    
+    def get_chart_widget_canvas_item(self, widget_id):
         return self.canvas_items[widget_id][0]
+
     def on_chart_drag(self, event):
         if event.state == 256:
             self.parent.move(

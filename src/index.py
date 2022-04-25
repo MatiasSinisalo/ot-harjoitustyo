@@ -48,10 +48,17 @@ def set_y_values_for_next_chart():
         y_values_for_chart.append(spreadSheetView.cell_grid_values[key])
 
 
-def create_new_chart():
+def create_new_bar_chart():
     canvasChartManager.add_new_bar_chart(
         "Hello World", "title of x", "title of y",
         x_values_for_chart, y_values_for_chart, 20, 10, 50, 500, 500)
+
+def create_new_pie_chart():
+     canvasChartManager.add_new_pie_chart(
+        "Hello World", "title of x", "title of y",
+        x_values_for_chart, y_values_for_chart, 20, 10, 50, 500, 500)
+
+
 
 def setAnswerTextToSum():
     answer = spreadSheetView.GetSumOfSelection()
@@ -120,25 +127,30 @@ if __name__ == "__main__":
     canvasConfigurerView = Frame(root, width=300, bg="white")
     canvasConfigurerView.grid(column=2, row=0, sticky=N+W+S+E)
 
-    barChartConfigurerView = Frame(canvasConfigurerView, width=300, bg="lightgray")
-    barChartConfigurerView.grid(column=0, row=0, pady=10, padx=10)
+    ChartConfigurerView = Frame(canvasConfigurerView, width=300, bg="lightgray")
+    ChartConfigurerView.grid(column=0, row=0, pady=10, padx=10)
 
     x_values_for_chart = [0]
     setXValuesForChart = Button(
-        barChartConfigurerView, text="aseta valinta kaavion X arvoksi",
-        command=lambda: set_x_values_for_next_chart())
+        ChartConfigurerView, text="aseta valinta kaavion X arvoksi",
+        command=set_x_values_for_next_chart)
     setXValuesForChart.grid(column=0, row=1)
 
     y_values_for_chart = [0]
     setYValuesForChart = Button(
-        barChartConfigurerView, text="aseta valinta kaavion Y arvoksi",
-        command=lambda: set_y_values_for_next_chart())
+        ChartConfigurerView, text="aseta valinta kaavion Y arvoksi",
+        command=set_y_values_for_next_chart)
     setYValuesForChart.grid(column=0, row=2)
 
     addNewBarChartButton = Button(
-        barChartConfigurerView, text="Lisaa uusi pylvaskaavio",
-        command=lambda: create_new_chart())
+        ChartConfigurerView, text="Lisaa uusi pylvaskaavio",
+        command=create_new_bar_chart)
     addNewBarChartButton.grid(column=0, row=3)
+
+    addNewPieChartButton = Button(
+        ChartConfigurerView, text="Lisaa uusi piirakkakaavio",
+        command=create_new_pie_chart)
+    addNewPieChartButton.grid(column=0, row=4)
 
     calculationsView = Frame(canvasConfigurerView, width=300, bg="lightgray")
     calculationsView.grid(column=0, row=2,  sticky=N+W+S+E,  pady=10, padx=10)
