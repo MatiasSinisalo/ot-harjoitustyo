@@ -84,3 +84,24 @@ class Testgrid_display(unittest.TestCase):
         TextOfSecondWidget = BackToSecondWidget.get("1.0", END)
         self.assertEqual(TextOfSecondWidget.replace(
             "\n", ""), "SecondHello99")
+    
+    def test_SumOfSelectedValuesIsCorrect(self):
+        self.spreadSheetView.drag_selected_values = {"1":"1", "2":"2", "3":"3"}
+        answer = self.spreadSheetView.GetSumOfSelection()
+        self.assertEqual(answer, 6.0)
+    
+    def test_SumOfSelectedValuesGivesCorrectError(self):
+        self.spreadSheetView.drag_selected_values = {"1":"1", "2":"hello", "3":"3"}
+        answer = self.spreadSheetView.GetSumOfSelection()
+        self.assertEqual(answer, "Arvoa ei voitu kääntää luvuksi: 'hello'")
+    
+
+    def test_AverageOfSelectedValuesIsCorrect(self):
+        self.spreadSheetView.drag_selected_values = {"1":"1", "2":"2", "3":"3"}
+        answer = self.spreadSheetView.GetAverageOfSelection()
+        self.assertEqual(answer, (1+2+3)/ 3)
+    
+    def test_AverageOfSelectedValuesGivesCorrectError(self):
+        self.spreadSheetView.drag_selected_values = {"1":"1", "2":"hello", "3":"3"}
+        answer = self.spreadSheetView.GetAverageOfSelection()
+        self.assertEqual(answer, "Arvoa ei voitu kääntää luvuksi: 'hello'")
