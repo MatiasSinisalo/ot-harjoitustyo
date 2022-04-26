@@ -1,4 +1,10 @@
 # Ohjelmistotekniikan harjoitustyö  
+---------------------------------
+# Taulukkolaskentasovellus  
+Sovelluksen tarkoitus on olla yksinkertainen taulukkolaskentasovellus, jossa käyttäjä voi syöttää tietoa taulukkoon, luoda kaavioita lisäämästään tiedosta, sekä tehdä yksinkertaisia laskutoimituksia.
+
+
+
 -------------  
 **Ohjelman asennus**  
 1. asenna riippuvuudet: poetry install  
