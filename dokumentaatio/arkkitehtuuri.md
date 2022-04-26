@@ -1,2 +1,4 @@
 
-![kaavio](https://user-images.githubusercontent.com/50097749/162998083-defc84d3-513f-4e31-a3c5-81d4682cf651.png)
+
+![luokkakaavio](https://user-images.githubusercontent.com/50097749/165352449-5e44b537-e286-46fd-9cfa-a0ae4a2eb23e.jpg)
+![sekvenssikaavio](https://user-images.githubusercontent.com/50097749/165352467-a7324402-cb3e-4c66-a93a-1248c92c1ad5.jpg)
