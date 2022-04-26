@@ -10,10 +10,11 @@ Taulukkolaskentasovelluksen avulla käyttäjä pystyy järjestämään tietoa ta
 - [X] Käyttäjä voi syöttää tietoa (tekstiä, numeroita) taulukkoon.
 
 - Käyttäjä voi luoda visuaallisen esityksen syöttämästään tiedosta esimerkiksi 
-  - Pie taulukon 
+  - [X] Pie taulukon 
   -  viiva taulukon
   -  [X] pylväs kaavion  
 
-- Käyttäjä voi tehdä yksinkertaisia matemaattisia laskutoimituksia taulukossa olevalla tiedolla.
+- Käyttäjä voi tehdä yksinkertaisia matemaattisia laskutoimituksia taulukossa olevalla tiedolla. esimerkiksi
+  -  [X]  laskea valitsemiensa arvojen summan ja keskiarvon
 
 - taulukkohallintasovelluksen tiedot tallentuvat tiedostoon käyttäjän kovalevylle
