@@ -1,7 +1,7 @@
 
 # help for Tkinter https://tkdocs.com/tutorial/
 
-from spreadSheetApp import SpreadSheetApp
+from spread_sheet_app import SpreadSheetApp
 
 
 if __name__ == "__main__":

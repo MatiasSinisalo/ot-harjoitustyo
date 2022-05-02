@@ -42,14 +42,12 @@ class GridDisplay:
                     cell_value = f"{cell_number}"
                     fill_color = "white"
                     cell_number += 1
-                self.canvas.create_rectangle(column*self.cell_width, row*cell_height,
+                self.canvas.create_rectangle(column*self.cell_width, row * cell_height,
                                              column*self.cell_width + self.cell_width,
                                              row*self.cell_height+self.cell_height,
                                              tags=("clickable"), fill=fill_color)
-                new_cell_display_text_id = self.canvas.create_text(column*self.cell_width +
-                                                                   self.display_text_offset_x,
-                                                                   row*self.cell_height +
-                                                                   self.display_text_offset_y,
+                new_cell_display_text_id = self.canvas.create_text(column*self.cell_width + self.display_text_offset_x,
+                                                                   row*self.cell_height +  self.display_text_offset_y,
                                                                    text=cell_value, anchor=NW,
                                                                    justify=LEFT,
                                                                    width=self.cell_width-5,
@@ -174,24 +172,24 @@ class GridDisplay:
                 traveller_y += self.cell_height
                 traveller_x = left_corner_x
             
-    def GetSumOfSelection(self):
+    def get_sum_of_selection(self):
         answerString = ""
-        sum = 0
+        sum_of_selection = 0
         for val in self.drag_selected_values.values():
             try:
-                sum += float(val)
+                sum_of_selection += float(val)
             except:
                 answerString = f"Arvoa ei voitu kääntää luvuksi: '{val}'"
                 return answerString
                 break
-        return sum
+        return sum_of_selection
 
-    def GetAverageOfSelection(self):
-        sum = self.GetSumOfSelection()
-        if isinstance(sum, str):
-            return sum
+    def get_average_of_selection(self):
+        sum_of_selection = self.get_sum_of_selection()
+        if isinstance(sum_of_selection, str):
+            return sum_of_selection
         else:
-            return sum / len(self.drag_selected_values)
+            return sum_of_selection / len(self.drag_selected_values)
         
     
 

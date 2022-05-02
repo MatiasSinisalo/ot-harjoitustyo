@@ -87,21 +87,21 @@ class Testgrid_display(unittest.TestCase):
     
     def test_SumOfSelectedValuesIsCorrect(self):
         self.spreadSheetView.drag_selected_values = {"1":"1", "2":"2", "3":"3"}
-        answer = self.spreadSheetView.GetSumOfSelection()
+        answer = self.spreadSheetView.get_sum_of_selection()
         self.assertEqual(answer, 6.0)
     
     def test_SumOfSelectedValuesGivesCorrectError(self):
         self.spreadSheetView.drag_selected_values = {"1":"1", "2":"hello", "3":"3"}
-        answer = self.spreadSheetView.GetSumOfSelection()
+        answer = self.spreadSheetView.get_sum_of_selection()
         self.assertEqual(answer, "Arvoa ei voitu kääntää luvuksi: 'hello'")
     
 
     def test_AverageOfSelectedValuesIsCorrect(self):
         self.spreadSheetView.drag_selected_values = {"1":"1", "2":"2", "3":"3"}
-        answer = self.spreadSheetView.GetAverageOfSelection()
+        answer = self.spreadSheetView.get_average_of_selection()
         self.assertEqual(answer, (1+2+3)/ 3)
     
     def test_AverageOfSelectedValuesGivesCorrectError(self):
         self.spreadSheetView.drag_selected_values = {"1":"1", "2":"hello", "3":"3"}
-        answer = self.spreadSheetView.GetAverageOfSelection()
+        answer = self.spreadSheetView.get_average_of_selection()
         self.assertEqual(answer, "Arvoa ei voitu kääntää luvuksi: 'hello'")
