@@ -175,7 +175,7 @@ class GridDisplay:
 
                 traveller_y += self.cell_height
                 traveller_x = left_corner_x
-            print(self.drag_selected_values)
+            
             
     def get_sum_of_selection(self):
         answerString = ""
@@ -196,9 +196,6 @@ class GridDisplay:
         else:
             return sum_of_selection / len(self.drag_selected_values)
         
-    
-
-
     def generate_preview_text(self, text):
         return text.replace("\n", "")[:self.max_letters_in_cell]
 
@@ -212,4 +209,17 @@ class GridDisplay:
             grid_cell_number = self.cell_grid_number_by_text_id[key]
             self.canvas.itemconfig(
                key, text=self.generate_preview_text(self.cell_grid_values[grid_cell_number]))
+    
+    def handle_clicks(self, event):
+       
+            self.reset_drag()
+            self.cancel_cell_edit()
+            if event.state != 1:
+                self.edit_cell(event)
+            elif event.state == 1:
+                self.select(event.x, event.y, "lightblue")
+      
+    def handle_movement(self, event):
+        if event.state == 257:
+            self.select(event.x, event.y, "lightblue")
         

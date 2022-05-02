@@ -41,6 +41,7 @@ class ChartManager:
         chart_widget.widgetName = "chartWidget"
         chart_widget.bind("<Motion>", self.on_chart_drag)
         chart_widget.bind("<Delete>", self.delete_chart)
+        chart_widget.bind("<1>", self.on_click)
         chart_widget_windowid = self.parent.create_window(
             xpos, ypos, window=chart_widget)
 
@@ -51,7 +52,11 @@ class ChartManager:
     def get_chart_widget_canvas_item(self, widget_id):
         return self.canvas_items[widget_id][0]
 
+    def on_click(self, event):
+        event.widget.focus_set()
+
     def on_chart_drag(self, event):
+        
         if event.state == 256:
             self.parent.move(
                 self.canvas_items[event.widget][0], event.x, event.y)

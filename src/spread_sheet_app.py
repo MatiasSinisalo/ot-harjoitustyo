@@ -1,5 +1,6 @@
 from os import stat
 from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, Text, Tk
+from canvas_config_view import CanvasConfigView
 from grid_display import GridDisplay
 from graphs.matplotlib_graphs import ChartManager
 from file_saver import FileSaver
@@ -28,27 +29,25 @@ class SpreadSheetApp:
         self.init_menu_bar()
         self.init_grid_scrollBars()
         self.init_grid()
+        
         self.canvas_chart_manager = ChartManager(self.grid_canvas)
-        self.init_canvas_config_view()
+        
+        self.canvas_config_view = CanvasConfigView(self, self.root)
+
         self.init_bind_events()
         
     def start(self):
         self.root.mainloop()
+
+    def init_bind_events(self):
+        self.root.bind('<1>', self.handle_clicks)
+        self.grid_canvas.bind('<Motion>', self.spread_sheet_view.handle_movement)
     
     def handle_clicks(self, event):
         if event.widget.widgetName == "gridCanvas":
-            self.spread_sheet_view.reset_drag()
-            self.spread_sheet_view.cancel_cell_edit()
-            if event.state != 1:
-                self.spread_sheet_view.edit_cell(event)
-            elif event.state == 1:
-                self.spread_sheet_view.select(event.x, event.y, "lightblue")
-        elif event.widget.widgetName == "chartWidget":
-            event.widget.focus_set()
-
-    def handle_movement(self, event):
-        if event.state == 257:
-            self.spread_sheet_view.select(event.x, event.y, "lightblue")
+           self.spread_sheet_view.handle_clicks(event)
+        if event.widget.widgetName == "chartWidget":
+            self.canvas_chart_manager.on_click(event)
 
     def handle_x_scroll(self, a_val, b_val):
         self.grid_canvas.xview(a_val, b_val)
@@ -59,7 +58,6 @@ class SpreadSheetApp:
         self.canvas_chart_manager.update_all_charts()
 
     def set_x_values_for_next_chart(self):
-        self.x_values_for_chart
         self.x_values_for_chart = []
         for key in self.spread_sheet_view.drag_selected_values:
             cell_number = self.spread_sheet_view.cell_grid_number_by_text_id[key]
@@ -81,13 +79,7 @@ class SpreadSheetApp:
             "Hello World", "title of x", "title of y",
             self.x_values_for_chart, self.y_values_for_chart, 20, 10, 50, 500, 500)
 
-    def set_answer_text_to_sum(self):
-        answer = self.spread_sheet_view.get_sum_of_selection()
-        self.sum_result_text.config(text = answer)
-
-    def set_answer_text_to_average(self):
-        answer = self.spread_sheet_view.get_average_of_selection()
-        self.average_result_text.config(text = answer)
+    
 
     def init_grid(self):
         GRID_WIDTH = 100
@@ -120,55 +112,8 @@ class SpreadSheetApp:
 
         self.hbar.config(command=self.handle_x_scroll)
         self.hbar.grid(column=0, row=1, sticky=E+W)
+          
     
-    def init_canvas_config_view(self):
-       
-        canvas_configurer_view = Frame(self.root, width=300, bg="white")
-        canvas_configurer_view.grid(column=2, row=0, sticky=N+W+S+E)
-
-        chart_configurer_view = Frame(canvas_configurer_view, width=300, bg="lightgray")
-        chart_configurer_view.grid(column=0, row=0, pady=10, padx=10)
-
-        set_x_values_for_chart = Button(
-            chart_configurer_view, text="aseta valinta kaavion X arvoksi",
-            command=self.set_x_values_for_next_chart)
-        set_x_values_for_chart.grid(column=0, row=1)
-
-        set_y_values_for_chart = Button(
-            chart_configurer_view, text="aseta valinta kaavion Y arvoksi",
-            command=self.set_y_values_for_next_chart)
-        set_y_values_for_chart.grid(column=0, row=2)
-
-        add_new_bar_chart_button = Button(
-            chart_configurer_view, text="Lisaa uusi pylvaskaavio",
-            command=self.create_new_bar_chart)
-        add_new_bar_chart_button.grid(column=0, row=3)
-
-        add_new_pie_chart_button = Button(
-            chart_configurer_view, text="Lisaa uusi piirakkakaavio",
-            command=self.create_new_pie_chart)
-        add_new_pie_chart_button.grid(column=0, row=4)
-
-        calculations_view = Frame(canvas_configurer_view, width=300, bg="lightgray")
-        calculations_view.grid(column=0, row=2,  sticky=N+W+S+E,  pady=10, padx=10)
-
-        get_sum_of_selection_button = Button(calculations_view, text="Laske valinnan summa", 
-                                            command=self.set_answer_text_to_sum)
-        get_sum_of_selection_button.grid(column=0, row=1, sticky=E+W)
-        
-        self.sum_result_text = Label(calculations_view)
-        self.sum_result_text.grid(column=0, row=2, sticky=E+W)
-
-        get_average_of_selection_button = Button(calculations_view, text="Laske valinnan keskiarvo", 
-                                            command=self.set_answer_text_to_average)
-        get_average_of_selection_button.grid(column=0, row=3, sticky=E+W)
-        
-        self.average_result_text = Label(calculations_view)
-        self.average_result_text.grid(column=0, row=4, sticky=E+W)
-        
-    def init_bind_events(self):
-        self.root.bind('<1>', self.handle_clicks)
-        self.grid_canvas.bind('<Motion>', self.handle_movement)
         
 
     def init_menu_bar(self):
