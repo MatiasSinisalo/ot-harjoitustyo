@@ -1,20 +1,24 @@
+from os import stat
 from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, Text, Tk
 from grid_display import GridDisplay
 from graphs.matplotlib_graphs import ChartManager
-
+from file_saver import FileSaver
 
 class SpreadSheetApp:
     def __init__(self):
         self.x_values_for_chart = []
         self.y_values_for_chart = []
-        
-
+       
         self.root = Tk()
         self.root.option_add('*tearOff', False)
         self.root.title("Taulukkolaskentasovellus")
         self.root.geometry("500x500")
         self.root.configure(background='SteelBlue1')
 
+        self.filesaver = FileSaver()
+    def start(self):
+        self.init_front_end()
+        
     def init_front_end(self):
         
 
@@ -29,7 +33,7 @@ class SpreadSheetApp:
         self.canvas_chart_manager = ChartManager(self.grid_canvas)
         self.init_canvas_config_view()
         self.init_bind_events()
-
+        
         self.root.mainloop()
     
     def handle_clicks(self, event):
@@ -59,12 +63,14 @@ class SpreadSheetApp:
         self.x_values_for_chart
         self.x_values_for_chart = []
         for key in self.spread_sheet_view.drag_selected_values:
-            self.x_values_for_chart.append(self.spread_sheet_view.cell_grid_values[key])
+            cell_number = self.spread_sheet_view.cell_grid_number_by_text_id[key]
+            self.x_values_for_chart.append(self.spread_sheet_view.cell_grid_values[cell_number])
 
     def set_y_values_for_next_chart(self):
         self.y_values_for_chart = []
         for key in self.spread_sheet_view.drag_selected_values:
-            self.y_values_for_chart.append(self.spread_sheet_view.cell_grid_values[key])
+            cell_number = self.spread_sheet_view.cell_grid_number_by_text_id[key]
+            self.y_values_for_chart.append(self.spread_sheet_view.cell_grid_values[cell_number])
 
     def create_new_bar_chart(self):
         self.canvas_chart_manager.add_new_bar_chart(
@@ -178,6 +184,20 @@ class SpreadSheetApp:
         menu_edit = Menu(menubar)
         menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
 
+    def saveStateToFile(self):
+        self.filesaver.SaveDictToFile("", self.spread_sheet_view.cell_grid_values)
     
+    def loadStateFromFile(self):
+        state = self.filesaver.readDictFromFile("")
+        if state != None:
+            self.spread_sheet_view.cell_grid_values = state[0]
+        print(self.spread_sheet_view.cell_grid_values)
+        
+        
+    
+    
+        
+
+        
        
        

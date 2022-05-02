@@ -10,7 +10,7 @@ class GridDisplay:
 
         self.canvas = canvas
         self.cell_grid_values = {}
-
+        self.cell_grid_number_by_text_id = {}
         self.grid_width = grid_width
         self.grid_height = grid_height
         self.cell_width = cell_width
@@ -39,7 +39,7 @@ class GridDisplay:
                     cell_value = f"C: {column}"
                     fill_color = "lightgray"
                 else:
-                    cell_value = f"{cell_number}"
+                    cell_value = cell_number
                     fill_color = "white"
                     cell_number += 1
                 self.canvas.create_rectangle(column*self.cell_width, row * cell_height,
@@ -52,7 +52,8 @@ class GridDisplay:
                                                                    justify=LEFT,
                                                                    width=self.cell_width-5,
                                                                    font=str(self.font_size))
-                self.cell_grid_values[new_cell_display_text_id] = cell_value
+                self.cell_grid_values[cell_number] = cell_value
+                self.cell_grid_number_by_text_id[new_cell_display_text_id] = cell_number
 
         # textCanvasWidget is the id of the Text widget that spawns when a rectanlge is clicked
         self.text_canvas_widget = None
@@ -62,6 +63,7 @@ class GridDisplay:
 
         # displayTextId is the raw text shown when a rectangle is not clicked
         self.display_text_id = None
+       
 
     def edit_cell(self, event):
         virtual_coords = self.clip_to_grid(self.canvas.canvasx(
@@ -74,7 +76,8 @@ class GridDisplay:
                 virtual_coords[0], virtual_coords[1])
            
             self.display_text_id = display_text_box_id[0]+1
-            text_of_display_box = self.cell_grid_values[self.display_text_id]
+            grid_cell_number = self.cell_grid_number_by_text_id[self.display_text_id]
+            text_of_display_box = self.cell_grid_values[grid_cell_number]
            
             self.text_canvas_widget = Text(
                 self.canvas, state=NORMAL, font=str(self.font_size))
@@ -95,8 +98,8 @@ class GridDisplay:
           
             self.canvas.itemconfig(
                 self.display_text_id, text=self.generate_preview_text(new_text))
-          
-            self.cell_grid_values[self.display_text_id] = new_text
+            grid_cell_number = self.cell_grid_number_by_text_id[self.display_text_id]
+            self.cell_grid_values[grid_cell_number] = new_text
           
             self.canvas.delete(self.text_canvas_item)
             self.text_canvas_item = None
@@ -166,11 +169,13 @@ class GridDisplay:
                     cell_box_id = self.canvas.find_closest(
                         traveller_x, traveller_y)
                     self.canvas.itemconfig(cell_box_id, fill=fillcolor)
-                    self.drag_selected_values[cell_box_id[0]+1] = self.cell_grid_values[cell_box_id[0]+1]
+                    grid_cell_number = self.cell_grid_number_by_text_id[cell_box_id[0]+1]
+                    self.drag_selected_values[cell_box_id[0]+1] = self.cell_grid_values[grid_cell_number]
                     traveller_x += self.cell_width
 
                 traveller_y += self.cell_height
                 traveller_x = left_corner_x
+            print(self.drag_selected_values)
             
     def get_sum_of_selection(self):
         answerString = ""
