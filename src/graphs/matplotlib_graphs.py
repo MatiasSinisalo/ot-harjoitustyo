@@ -1,8 +1,8 @@
 
 
 import matplotlib
-from bar_chart import BarChart
-from pie_chart import PieChart
+from graphs.bar_chart import BarChart
+from graphs.pie_chart import PieChart
 
 matplotlib.use('TkAgg')
 

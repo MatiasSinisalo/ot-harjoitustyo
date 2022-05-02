@@ -1,6 +1,6 @@
 
 import unittest
-from matplotlib_graphs import ChartManager
+from graphs.matplotlib_graphs import ChartManager
 from tkinter import *
 from custom_event import Event
 
