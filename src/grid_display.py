@@ -206,3 +206,10 @@ class GridDisplay:
         x_pos = firstx - firstx % self.cell_width
         y_pos = firsty - firsty % self.cell_height
         return (x_pos, y_pos)
+
+    def updateViewText(self):
+        for key in self.cell_grid_number_by_text_id:
+            grid_cell_number = self.cell_grid_number_by_text_id[key]
+            self.canvas.itemconfig(
+               key, text=self.generate_preview_text(self.cell_grid_values[grid_cell_number]))
+        

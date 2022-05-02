@@ -20,6 +20,7 @@ class FileSaver:
         
     
     def readDictFromFile(self, path):
+        try:
             with open("test.csv", "r") as file:
                 returnData = []
                 reader = csv.DictReader(file, delimiter=",")
@@ -27,6 +28,8 @@ class FileSaver:
                     returnData.append(val)
                 file.close()
                 return returnData
+        except:
+            print("testi.csv tiedostoa ei olemassa")
        
        
      

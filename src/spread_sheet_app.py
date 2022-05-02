@@ -16,8 +16,6 @@ class SpreadSheetApp:
         self.root.configure(background='SteelBlue1')
 
         self.filesaver = FileSaver()
-    def start(self):
-        self.init_front_end()
         
     def init_front_end(self):
         
@@ -34,6 +32,7 @@ class SpreadSheetApp:
         self.init_canvas_config_view()
         self.init_bind_events()
         
+    def start(self):
         self.root.mainloop()
     
     def handle_clicks(self, event):
@@ -190,8 +189,11 @@ class SpreadSheetApp:
     def loadStateFromFile(self):
         state = self.filesaver.readDictFromFile("")
         if state != None:
-            self.spread_sheet_view.cell_grid_values = state[0]
-        print(self.spread_sheet_view.cell_grid_values)
+            valueDictionary = state[0]
+            for key in valueDictionary:
+                self.spread_sheet_view.cell_grid_values[int(key)] = valueDictionary[key]
+        self.spread_sheet_view.updateViewText()
+      
         
         
     
