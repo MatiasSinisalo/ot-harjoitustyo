@@ -6,8 +6,7 @@ from file_saver import FileSaver
 
 class SpreadSheetApp:
     def __init__(self):
-        self.x_values_for_chart = []
-        self.y_values_for_chart = []
+        
       
        
         self.root = Tk()
@@ -17,10 +16,7 @@ class SpreadSheetApp:
         self.root.configure(background='SteelBlue1')
 
         self.filesaver = FileSaver()
-        #help for stringvars: https://www.pythontutorial.net/tkinter/tkinter-stringvar/
-        #self.next_chart_x_title = StringVar()
-        #self.next_chart_y_title = StringVar()
-        #self.next_chart_title = StringVar()
+       
         
     def init_front_end(self):
         
