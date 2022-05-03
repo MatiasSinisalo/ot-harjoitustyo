@@ -1,4 +1,3 @@
-from os import stat
 from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, Text, Tk
 from canvas_config_view import CanvasConfigView
 from grid_display import GridDisplay
