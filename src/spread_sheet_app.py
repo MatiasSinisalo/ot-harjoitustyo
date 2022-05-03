@@ -1,5 +1,5 @@
 from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, StringVar, Text, Tk
-from canvas_config_view import CanvasConfigView
+from canvas_config.canvas_config_view import CanvasConfigView
 from grid_display import GridDisplay
 from graphs.matplotlib_graphs import ChartManager
 from file_saver import FileSaver
@@ -18,9 +18,9 @@ class SpreadSheetApp:
 
         self.filesaver = FileSaver()
         #help for stringvars: https://www.pythontutorial.net/tkinter/tkinter-stringvar/
-        self.next_chart_x_title = StringVar()
-        self.next_chart_y_title = StringVar()
-        self.next_chart_title = StringVar()
+        #self.next_chart_x_title = StringVar()
+        #self.next_chart_y_title = StringVar()
+        #self.next_chart_title = StringVar()
         
     def init_front_end(self):
         
@@ -36,7 +36,7 @@ class SpreadSheetApp:
         
         self.canvas_chart_manager = ChartManager(self.grid_canvas)
         
-        self.canvas_config_view = CanvasConfigView(self, self.root)
+        self.canvas_config_view = CanvasConfigView(self.root, self)
 
         self.init_bind_events()
         
@@ -61,29 +61,7 @@ class SpreadSheetApp:
         self.grid_canvas.yview(a_val,  b_val)
         self.canvas_chart_manager.update_all_charts()
 
-    def set_x_values_for_next_chart(self):
-        self.x_values_for_chart = []
-        for key in self.spread_sheet_view.drag_selected_values:
-            cell_number = self.spread_sheet_view.cell_grid_number_by_text_id[key]
-            self.x_values_for_chart.append(self.spread_sheet_view.cell_grid_values[cell_number])
-
-    def set_y_values_for_next_chart(self):
-        self.y_values_for_chart = []
-        for key in self.spread_sheet_view.drag_selected_values:
-            cell_number = self.spread_sheet_view.cell_grid_number_by_text_id[key]
-            self.y_values_for_chart.append(self.spread_sheet_view.cell_grid_values[cell_number])
-
-    def create_new_bar_chart(self):
-        self.canvas_chart_manager.add_new_bar_chart(
-           self.next_chart_title.get(), self.next_chart_x_title.get(), self.next_chart_y_title.get(),
-            self.x_values_for_chart, self.y_values_for_chart, 20, 10, 50, 500, 500)
-
-    def create_new_pie_chart(self):
-        self.canvas_chart_manager.add_new_pie_chart(
-             self.next_chart_title.get(), self.next_chart_x_title.get(), self.next_chart_y_title.get(),
-            self.x_values_for_chart, self.y_values_for_chart, 20, 10, 50, 500, 500)
-
-    
+  
 
     def init_grid(self):
         GRID_WIDTH = 100
