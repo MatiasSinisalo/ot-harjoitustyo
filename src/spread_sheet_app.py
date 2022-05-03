@@ -131,7 +131,7 @@ class SpreadSheetApp:
     def saveStateToFile(self):
      
         self.filesaver.bind_data_to_save("cell_values", self.spread_sheet_view.cell_grid_values)
-        
+        self.filesaver.bind_data_to_save("chart_values", self.canvas_chart_manager.chartInformation)
         self.filesaver.save_dict_to_file("")
      
     
@@ -144,6 +144,23 @@ class SpreadSheetApp:
             for key in state["cell_values"]:
                 self.spread_sheet_view.cell_grid_values[int(key)] = state["cell_values"][key]
             self.spread_sheet_view.updateViewText()
+
+            for chart in state["chart_values"]:
+                information = state["chart_values"][chart]
+                if information["type"] == "Bar":
+                    self.canvas_chart_manager.add_new_bar_chart(information["title"], information["x_title"], 
+                                                                information["y_title"], information["x_values"], 
+                                                                information["y_values"], information["size_x"], 
+                                                                information["size_y"], information["dots"], 
+                                                                information["coords"][0], information["coords"][1])
+                elif information["type"] == "Pie":
+                        self.canvas_chart_manager.add_new_pie_chart(information["title"], information["x_title"], 
+                                                                information["y_title"], information["x_values"], 
+                                                                information["y_values"], information["size_x"], 
+                                                                information["size_y"], information["dots"], 
+                                                                information["coords"][0], information["coords"][1])
+
+           
         
             
         
