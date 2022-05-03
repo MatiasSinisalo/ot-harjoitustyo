@@ -11,7 +11,7 @@
 |12.4.2022      |   3            |
 |25.4.2022      |   3            |
 |2.5.2022       |   3            |
-|3.5.2022       |   2            |
+|3.5.2022       |   3            |
 
 
 3.4.2022:
@@ -40,7 +40,7 @@ taulukon arvojen valitsemisen tarkkuuden parantamista.
 piirakkakaavion ja summan sekä keskiarvon laskemisen toteutus.  
 testit summan ja keskiarvon laskemiselle ja piirakkakaaviolle.  
 
-2.5.
+2.5.  
 Ohjelman ruudukot tallentuvat testi.csv tiedostoon.
 Ohjelmakoodin rakenteen muuttamista.
 
@@ -49,5 +49,6 @@ Ohjelman taulukot ja ruudut tallentuvat testi.json tiedostoon.
 Käyttäjä voi valita otsikot luodessaan taulukkoja.  
 Ohjelmakoodin rakenteen muuttamista.  
 testien teko spread_sheet_app moduulille.  
+
 ------------------
-Työtunnit yhteensä: 34 h
+Työtunnit yhteensä: 40 h
