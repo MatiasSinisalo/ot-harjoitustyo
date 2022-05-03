@@ -2,7 +2,7 @@
 import unittest
 from grid_display import GridDisplay
 from tkinter import *
-from custom_event import Event
+from tests.custom_event import Event
 
 
 class Testgrid_display(unittest.TestCase):

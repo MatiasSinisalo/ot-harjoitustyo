@@ -2,7 +2,7 @@
 import unittest
 from graphs.matplotlib_graphs import ChartManager
 from tkinter import *
-from custom_event import Event
+from tests.custom_event import Event
 
 class Test_matplitlib_graphs(unittest.TestCase):
     def setUp(self) -> None:
