@@ -1,5 +1,14 @@
 # Viikko 5  
 
+Taulukon ruutujen tiedot ja kaaviot tallentuvat test.json tiedostoon.  
+
+Käyttäjä voi asettaa kaaviolle otsikot.  
+
+Testit kattavat ruutujen ja kaavioiden tallentamisen tiedostoon.  
+
+
+# Viikko 5  
+
 Käyttäjä voi luoda lisäämästään tiedosta piirakkakaavion  
 
 Käyttäjä voi laskea valitsemistaan arvoista summan ja keskiarvon 
