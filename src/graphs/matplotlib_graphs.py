@@ -18,26 +18,9 @@ class ChartManager:
       
         new_chart = BarChart(title, x_title, y_title, x_values,
                              y_values, size_x, size_y, dots_per_inch)
-
-        chart_matplot_item = new_chart.get_chart(self.parent)
-        chart_widget = chart_matplot_item.get_tk_widget()
-        chart_widget.config(highlightcolor="lightblue", highlightthickness=3)
-        chart_widget.widgetName = "chartWidget"
-        chart_widget.bind("<Motion>", self.on_chart_drag)
-        chart_widget.bind("<Delete>", self.delete_chart)
-        chart_widget_windowid = self.parent.create_window(
-            xpos, ypos, window=chart_widget)
-
-        new_chart_id = len(self.chartInformation)
-        self.chartInformation[new_chart_id] = {"type":"Bar", "title":title,  "x_title":x_title, "y_title":y_title, 
-                                                "x_values":x_values, "y_values":y_values,
-                                                "size_x":size_x, "size_y":size_y, 
-                                                "dots":dots_per_inch, "coords":self.parent.coords(chart_widget_windowid)}
-
-
-        self.canvas_items[chart_widget] = (
-            chart_widget_windowid, chart_matplot_item, new_chart_id)
-        return chart_widget
+        
+        return self.display_chart(title, x_title, y_title, x_values, y_values,
+                          size_x, size_y, dots_per_inch, xpos, ypos, new_chart, "Bar")
     
     
 
@@ -47,9 +30,14 @@ class ChartManager:
         new_chart = PieChart(title, x_title, y_title, x_values,
                              y_values, size_x, size_y, dots_per_inch)
 
-      
+        return self.display_chart(title, x_title, y_title, x_values, y_values,
+                          size_x, size_y, dots_per_inch, xpos, ypos, new_chart, "Pie")
 
 
+        
+
+    def display_chart(self, title, x_title, y_title, x_values, y_values,
+                          size_x, size_y, dots_per_inch, xpos, ypos, new_chart, chartType):
         chart_matplot_item = new_chart.get_chart(self.parent)
         chart_widget = chart_matplot_item.get_tk_widget()
         chart_widget.config(highlightcolor="lightblue", highlightthickness=3)
@@ -61,7 +49,7 @@ class ChartManager:
             xpos, ypos, window=chart_widget)
         
         new_chart_id = len(self.chartInformation)
-        self.chartInformation[new_chart_id] = {"type":"Pie", "title":title,  "x_title":x_title, "y_title":y_title, 
+        self.chartInformation[new_chart_id] = {"type":chartType, "title":title,  "x_title":x_title, "y_title":y_title, 
                                                 "x_values":x_values, "y_values":y_values,
                                                 "size_x":size_x, "size_y":size_y, 
                                                 "dots":dots_per_inch, "coords":self.parent.coords(chart_widget_windowid)}
@@ -70,8 +58,8 @@ class ChartManager:
         self.canvas_items[chart_widget] = (
             chart_widget_windowid, chart_matplot_item, new_chart_id)
         return chart_widget
-
-
+        
+        
     def get_chart_widget_canvas_item(self, widget_id):
         return self.canvas_items[widget_id][0]
 
