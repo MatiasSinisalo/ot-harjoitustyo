@@ -48,8 +48,8 @@ Ohjelmakoodin rakenteen muuttamista.
 Ohjelman taulukot ja ruudut tallentuvat testi.json tiedostoon.  
 Käyttäjä voi valita otsikot luodessaan taulukkoja.  
 Ohjelmakoodin rakenteen muuttamista.  
-testien teko spread_sheet_app moduulille.
-Docstring documentaation aloitus
+testien teko spread_sheet_app moduulille.  
+Docstring documentaation aloitus.  
 
 ------------------
 Työtunnit yhteensä: 41 h
