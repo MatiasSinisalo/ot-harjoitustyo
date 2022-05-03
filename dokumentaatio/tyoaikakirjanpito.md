@@ -44,9 +44,10 @@ testit summan ja keskiarvon laskemiselle ja piirakkakaaviolle.
 Ohjelman ruudukot tallentuvat testi.csv tiedostoon.
 Ohjelmakoodin rakenteen muuttamista.
 
-3.5
-Ohjelman taulukot ja ruudut tallentuvat testi.json tiedostoon.
-Käyttäjä voi valita otsikot luodessaan taulukkoja
-Ohjelmakoodin rakenteen muuttamista.
+3.5  
+Ohjelman taulukot ja ruudut tallentuvat testi.json tiedostoon.  
+Käyttäjä voi valita otsikot luodessaan taulukkoja.  
+Ohjelmakoodin rakenteen muuttamista.  
+testien teko spread_sheet_app moduulille.  
 ------------------
 Työtunnit yhteensä: 34 h
