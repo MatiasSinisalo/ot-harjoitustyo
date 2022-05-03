@@ -1,4 +1,4 @@
-# Viikko 5  
+# Viikko 6  
 
 Taulukon ruutujen tiedot ja kaaviot tallentuvat test.json tiedostoon.  
 
