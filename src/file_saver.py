@@ -24,7 +24,7 @@ class FileSaver:
             file = open("test.json", "r")
             data = json.load(file)
             file.close()
-            return file
+            return data
 
         except:
             return None
