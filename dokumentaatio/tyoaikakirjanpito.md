@@ -10,6 +10,7 @@
 |10.4.2022      |   3            |
 |12.4.2022      |   3            |
 |25.4.2022      |   3            |
+|2.5.2022       |   3            |
 
 
 3.4.2022:
@@ -37,6 +38,10 @@ otetiin pylint käyttöön ja toteutettiin testejä kaavioille.
 taulukon arvojen valitsemisen tarkkuuden parantamista.  
 piirakkakaavion ja summan sekä keskiarvon laskemisen toteutus.  
 testit summan ja keskiarvon laskemiselle ja piirakkakaaviolle.  
+
+2.5.
+Ohjelman ruudukot tallentuvat testi.csv tiedostoon.
+Ohjelmakoodin rakenteen muuttamista.
 
 ------------------
 Työtunnit yhteensä: 34 h

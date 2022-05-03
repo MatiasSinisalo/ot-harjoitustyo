@@ -1,35 +1,33 @@
-import csv
-#help for saving to csv: https://docs.python.org/3/library/csv.html
+
+import json
+#help for saving to json: https://docs.python.org/3/library/json.html 
+#help for opening files: https://docs.python.org/3/library/functions.html#open 
 class FileSaver:
     def __init__(self) -> None:
+        self.data = {}
+        self.open_file = None
         pass
    
-    def SaveDictToFile(self, path, data):
-        try:
-            file = open("test.csv", "w")
-            writer = csv.DictWriter(file, fieldnames=data.keys())
-            writer.writeheader()
-            writer.writerow(data)
-            file.close()
-        except:
-            print("virhe tiedostoa luodessa!")
-            
-            
-           
-        
-        
+    def save_dict_to_file(self, path):
+           file = open("test.json", "w")
+           json.dump(self.data, file)
+           file.close()
     
-    def readDictFromFile(self, path):
+    def bind_data_to_save(self, primary_key, data):
+        self.data[primary_key] = data
+    
+   
+       
+ 
+    def read_dict_from_file(self, path):
         try:
-            with open("test.csv", "r") as file:
-                returnData = []
-                reader = csv.DictReader(file, delimiter=",")
-                for val in reader:
-                    returnData.append(val)
-                file.close()
-                return returnData
+            file = open("test.json", "r")
+            data = json.load(file)
+            file.close()
+            return file
+
         except:
-            print("testi.csv tiedostoa ei olemassa")
+            return None
        
        
      

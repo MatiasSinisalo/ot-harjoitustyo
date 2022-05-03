@@ -208,7 +208,7 @@ class GridDisplay:
         for key in self.cell_grid_number_by_text_id:
             grid_cell_number = self.cell_grid_number_by_text_id[key]
             self.canvas.itemconfig(
-               key, text=self.generate_preview_text(self.cell_grid_values[grid_cell_number]))
+               key, text=self.generate_preview_text(str(self.cell_grid_values[grid_cell_number])))
     
     def handle_clicks(self, event):
        

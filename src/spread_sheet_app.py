@@ -129,15 +129,24 @@ class SpreadSheetApp:
         menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
 
     def saveStateToFile(self):
-        self.filesaver.SaveDictToFile("", self.spread_sheet_view.cell_grid_values)
+     
+        self.filesaver.bind_data_to_save("cell_values", self.spread_sheet_view.cell_grid_values)
+        
+        self.filesaver.save_dict_to_file("")
+     
+    
+
     
     def loadStateFromFile(self):
-        state = self.filesaver.readDictFromFile("")
+       
+        state = self.filesaver.read_dict_from_file("")
         if state != None:
-            valueDictionary = state[0]
-            for key in valueDictionary:
-                self.spread_sheet_view.cell_grid_values[int(key)] = valueDictionary[key]
-        self.spread_sheet_view.updateViewText()
+            for key in state["cell_values"]:
+                self.spread_sheet_view.cell_grid_values[int(key)] = state["cell_values"][key]
+            self.spread_sheet_view.updateViewText()
+        
+            
+        
       
         
         
