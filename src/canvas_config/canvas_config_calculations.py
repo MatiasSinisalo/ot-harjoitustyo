@@ -2,7 +2,9 @@ from tkinter import N,W,S,E, Button, Entry, Frame, Label
 
 
 class CanvasCalculationsView:
+    """Class responsible for the calculation UI"""
     def __init__(self, root, app) -> None:
+        """Inits the front end for the calculations UI"""
         self.root = root
         self.app = app
 
@@ -24,9 +26,11 @@ class CanvasCalculationsView:
         self.average_result_text.grid(column=0, row=4, sticky=E+W)
    
     def set_answer_text_to_sum(self):
+        """Gets the sum of currently selected values inside of the grid and displays them"""
         answer = self.app.spread_sheet_view.get_sum_of_selection()
         self.sum_result_text.config(text = answer)
 
     def set_answer_text_to_average(self):
+        """Gets the average of currently selected values inside of the grid and displays them"""
         answer = self.app.spread_sheet_view.get_average_of_selection()
         self.average_result_text.config(text = answer)

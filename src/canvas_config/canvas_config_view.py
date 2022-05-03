@@ -5,7 +5,9 @@ from canvas_config.canvas_config_view_chart_creator import CanvasChartCreatorVie
 
 
 class CanvasConfigView:
+    """Class for managing the functions of the right config bar of the application"""
     def __init__(self, root, app) -> None:
+        """Creates the chart creator view and calculations view"""
         self.root = root
         self.app = app
         canvas_configurer_view = Frame(self.root, width=300, bg="white")

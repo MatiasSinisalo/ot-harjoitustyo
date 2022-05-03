@@ -11,6 +11,7 @@ matplotlib.use('TkAgg')
 #help from matplotlib documentation for creating a pie chart
 #https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_features.html
 class PieChart:
+    """Class for creating a matplotlib pie chart"""
     def __init__(self, title, x_title, y_title, x_values, y_values, size_x, size_y, dots_per_inch):
         self.title = title
         self.x_title = x_title

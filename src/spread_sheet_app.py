@@ -5,8 +5,11 @@ from graphs.matplotlib_graphs import ChartManager
 from file_saver import FileSaver
 
 class SpreadSheetApp:
+    """
+        The main application class
+    """
     def __init__(self):
-        
+        """Initiates the applications root and filesaver"""
       
        
         self.root = Tk()
@@ -19,7 +22,7 @@ class SpreadSheetApp:
        
         
     def init_front_end(self):
-        
+        """Function for starting and displaying the UI"""
 
         self.main_canvas_container = Frame( self.root, bg="white")
         self.main_canvas_container.grid(column=0, row=0, sticky=N+W+S+E)
@@ -37,29 +40,35 @@ class SpreadSheetApp:
         self.init_bind_events()
         
     def start(self):
+        """Enters the Tkinter root mainloop"""
         self.root.mainloop()
 
     def init_bind_events(self):
+        """Function for binding events to the application"""
         self.root.bind('<1>', self.handle_clicks)
         self.grid_canvas.bind('<Motion>', self.spread_sheet_view.handle_movement)
     
     def handle_clicks(self, event):
+        """Function for delegating click events to different classes"""
         if event.widget.widgetName == "gridCanvas":
            self.spread_sheet_view.handle_clicks(event)
         if event.widget.widgetName == "chartWidget":
             self.canvas_chart_manager.on_click(event)
 
     def handle_x_scroll(self, a_val, b_val):
+        """Function for updating classes effected by grid horizontal scroll"""
         self.grid_canvas.xview(a_val, b_val)
         self.canvas_chart_manager.update_all_charts()
 
     def handle_y_scroll(self, a_val, b_val):
+        """Function for updating classes effected by grid vertical scroll"""
         self.grid_canvas.yview(a_val,  b_val)
         self.canvas_chart_manager.update_all_charts()
 
   
 
     def init_grid(self):
+        """Inits the grid_canvas Tkinter widget and the GridDisplay class for drawing a grid"""
         GRID_WIDTH = 100
         GRID_HEIGHT = 100
         CELL_WIDTH = 200
@@ -81,6 +90,7 @@ class SpreadSheetApp:
                                     FONT_SIZE, MAX_LETTERS_IN_CELL)
 
     def init_grid_scrollBars(self):
+        """Inits the scrollbars for scrolling the grid"""
         self.hbar = Scrollbar(self.main_canvas_container, orient=HORIZONTAL)
         self.vbar = Scrollbar(self.main_canvas_container, orient=VERTICAL)
       
@@ -95,6 +105,7 @@ class SpreadSheetApp:
         
 
     def init_menu_bar(self):
+        """Inits the UI for menu bar"""
         menubar = Menu(self.root)
         self.root['menu'] = menubar
         self.root.columnconfigure(0, weight=1)
@@ -107,6 +118,7 @@ class SpreadSheetApp:
         menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
 
     def saveStateToFile(self):
+        """Saves the app state as a dictionary to a file which is correctly test.json"""
      
         self.filesaver.bind_data_to_save("cell_values", self.spread_sheet_view.cell_grid_values)
         self.filesaver.bind_data_to_save("chart_values", self.canvas_chart_manager.chartInformation)
@@ -116,7 +128,7 @@ class SpreadSheetApp:
 
     
     def loadStateFromFile(self):
-       
+        """loads app state from a file which is correctly test.json"""
         state = self.filesaver.read_dict_from_file("")
         if state != None:
             for key in state["cell_values"]:

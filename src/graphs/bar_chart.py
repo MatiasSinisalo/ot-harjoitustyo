@@ -11,6 +11,7 @@ matplotlib.use('TkAgg')
 
 
 class BarChart:
+    """Class for creating a matplotlib bar chart"""
     def __init__(self, title, x_title, y_title, x_values, y_values, size_x, size_y, dots_per_inch):
         self.title = title
         self.x_title = x_title

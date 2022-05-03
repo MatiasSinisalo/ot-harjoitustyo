@@ -4,6 +4,7 @@ from tkinter import END, LEFT, NORMAL, NW, Text
 
 
 class GridDisplay:
+    """Class responsible for drawing a spreadsheet. Manages the editing and selection of grid cells"""
     def __init__(self, canvas, grid_width, grid_height, cell_width,
                  cell_height, display_text_offset_x,
                  display_text_offset_y, font_size, max_letters_in_cell):
@@ -66,6 +67,7 @@ class GridDisplay:
        
 
     def edit_cell(self, event):
+        """Function to edit a single cell inside a grid based on a Tkinter mouse click event"""
         virtual_coords = self.clip_to_grid(self.canvas.canvasx(
             event.x), self.canvas.canvasy(event.y))
         if virtual_coords[0] != 0 and virtual_coords[1] != 0:
@@ -93,6 +95,7 @@ class GridDisplay:
         return self.text_canvas_widget
 
     def cancel_cell_edit(self):
+        """Cancels the current editing of a cell"""
         if self.display_text_id is not None and self.text_canvas_widget is not None and self.cell_grid_values is not None:
             new_text = self.text_canvas_widget.get("1.0", END)
           
@@ -105,17 +108,21 @@ class GridDisplay:
             self.text_canvas_item = None
 
     def deselect(self):
+        """Deselects the correct selection of cells"""
         if len(self.drag_selected_values) > 0:
             for val in self.drag_selected_values.keys():
                 self.canvas.itemconfig(val-1, fill="white")
             self.drag_selected_values = {}
 
     def reset_drag(self):
+        """resets the drag start and end points. used to select cells when dragging and pressing SHIFT"""
         self.drag_start = None
         self.drag_end = None
         self.deselect()
 
     def select(self, x_val, y_val, fillcolor):
+        """Function to select cells. Currently called from spread_sheet_app when pressing SHIFT and dragging the mouse. 
+        Puts the values of selected cells inside self.drag_selected_values."""
         virtual_coords = self.clip_to_grid(
             self.canvas.canvasx(x_val), self.canvas.canvasy(y_val))
         if virtual_coords[0] != 0 and virtual_coords[1] != 0:
@@ -178,6 +185,7 @@ class GridDisplay:
             
             
     def get_sum_of_selection(self):
+        """Calculates the sum of currently selected values inside self.drag_selected_values"""
         answerString = ""
         sum_of_selection = 0
         for val in self.drag_selected_values.values():
@@ -190,6 +198,7 @@ class GridDisplay:
         return sum_of_selection
 
     def get_average_of_selection(self):
+        """Calculates the average of currently selected values inside self.drag_selected_values"""
         sum_of_selection = self.get_sum_of_selection()
         if isinstance(sum_of_selection, str):
             return sum_of_selection
@@ -197,21 +206,24 @@ class GridDisplay:
             return sum_of_selection / len(self.drag_selected_values)
         
     def generate_preview_text(self, text):
+        """Function to generate preview text that displays when cell is not edited"""
         return text.replace("\n", "")[:self.max_letters_in_cell]
 
     def clip_to_grid(self, firstx, firsty):
+        """returns the left corner coordinates of a cell given x and y"""
         x_pos = firstx - firstx % self.cell_width
         y_pos = firsty - firsty % self.cell_height
         return (x_pos, y_pos)
 
     def updateViewText(self):
+        """Updates the cell text that is displayed when a cell is not edited."""
         for key in self.cell_grid_number_by_text_id:
             grid_cell_number = self.cell_grid_number_by_text_id[key]
             self.canvas.itemconfig(
                key, text=self.generate_preview_text(str(self.cell_grid_values[grid_cell_number])))
     
     def handle_clicks(self, event):
-       
+            """Function to respond to click events sent from spread sheet app"""
             self.reset_drag()
             self.cancel_cell_edit()
             if event.state != 1:
@@ -220,6 +232,7 @@ class GridDisplay:
                 self.select(event.x, event.y, "lightblue")
       
     def handle_movement(self, event):
+        """Function to respond to click events sent from spread sheet app"""
         if event.state == 257:
             self.select(event.x, event.y, "lightblue")
         
