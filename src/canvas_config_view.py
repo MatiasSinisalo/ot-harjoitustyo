@@ -1,4 +1,4 @@
-from tkinter import N,W,S,E, Button, Frame, Label
+from tkinter import N,W,S,E, Button, Entry, Frame, Label
 
 
 class CanvasConfigView:
@@ -22,15 +22,32 @@ class CanvasConfigView:
 
         set_y_values_for_chart.grid(column=0, row=2)
 
+
+        label_for_chart_title = Label(chart_configurer_view, text="aseta taulukon otsikko")
+        label_for_chart_title.grid(column=0, row=3)
+        set_x_title_entry = Entry(chart_configurer_view, textvariable=self.app.next_chart_title)
+        set_x_title_entry.grid(column=0, row=4)
+        
+        label_for_x_title = Label(chart_configurer_view, text="aseta taulukon x otsikko")
+        label_for_x_title.grid(column=0, row=5)
+        set_x_title_entry = Entry(chart_configurer_view, textvariable=self.app.next_chart_x_title)
+        set_x_title_entry.grid(column=0, row=6)
+
+
+        label_for_y_title = Label(chart_configurer_view, text="aseta taulukon y otsikko")
+        label_for_y_title.grid(column=0, row=7)
+        set_y_title_entry = Entry(chart_configurer_view, textvariable=self.app.next_chart_y_title)
+        set_y_title_entry.grid(column=0, row=8)
+
         add_new_bar_chart_button = Button(
             chart_configurer_view, text="Lisaa uusi pylvaskaavio",
             command=app.create_new_bar_chart)
-        add_new_bar_chart_button.grid(column=0, row=3)
+        add_new_bar_chart_button.grid(column=0, row=9)
 
         add_new_pie_chart_button = Button(
             chart_configurer_view, text="Lisaa uusi piirakkakaavio",
             command=app.create_new_pie_chart)
-        add_new_pie_chart_button.grid(column=0, row=4)
+        add_new_pie_chart_button.grid(column=0, row=10)
 
         calculations_view = Frame(canvas_configurer_view, width=300, bg="lightgray")
         calculations_view.grid(column=0, row=2,  sticky=N+W+S+E,  pady=10, padx=10)

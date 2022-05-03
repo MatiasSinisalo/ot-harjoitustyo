@@ -11,6 +11,7 @@
 |12.4.2022      |   3            |
 |25.4.2022      |   3            |
 |2.5.2022       |   3            |
+|3.5.2022       |   1            |
 
 
 3.4.2022:
@@ -43,5 +44,8 @@ testit summan ja keskiarvon laskemiselle ja piirakkakaaviolle.
 Ohjelman ruudukot tallentuvat testi.csv tiedostoon.
 Ohjelmakoodin rakenteen muuttamista.
 
+3.5
+Ohjelman taulukot ja ruudut tallentuvat testi.json tiedostoon.
+Ohjelmakoodin rakenteen muuttamista.
 ------------------
 Työtunnit yhteensä: 34 h

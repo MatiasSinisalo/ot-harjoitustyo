@@ -1,4 +1,4 @@
-from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, Text, Tk
+from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, StringVar, Text, Tk
 from canvas_config_view import CanvasConfigView
 from grid_display import GridDisplay
 from graphs.matplotlib_graphs import ChartManager
@@ -8,6 +8,7 @@ class SpreadSheetApp:
     def __init__(self):
         self.x_values_for_chart = []
         self.y_values_for_chart = []
+      
        
         self.root = Tk()
         self.root.option_add('*tearOff', False)
@@ -16,6 +17,10 @@ class SpreadSheetApp:
         self.root.configure(background='SteelBlue1')
 
         self.filesaver = FileSaver()
+        #help for stringvars: https://www.pythontutorial.net/tkinter/tkinter-stringvar/
+        self.next_chart_x_title = StringVar()
+        self.next_chart_y_title = StringVar()
+        self.next_chart_title = StringVar()
         
     def init_front_end(self):
         
@@ -70,12 +75,12 @@ class SpreadSheetApp:
 
     def create_new_bar_chart(self):
         self.canvas_chart_manager.add_new_bar_chart(
-            "Hello World", "title of x", "title of y",
+           self.next_chart_title.get(), self.next_chart_x_title.get(), self.next_chart_y_title.get(),
             self.x_values_for_chart, self.y_values_for_chart, 20, 10, 50, 500, 500)
 
     def create_new_pie_chart(self):
         self.canvas_chart_manager.add_new_pie_chart(
-            "Hello World", "title of x", "title of y",
+             self.next_chart_title.get(), self.next_chart_x_title.get(), self.next_chart_y_title.get(),
             self.x_values_for_chart, self.y_values_for_chart, 20, 10, 50, 500, 500)
 
     
