@@ -10,7 +10,11 @@ matplotlib.use('TkAgg')
 class ChartManager:
     """Class responsible for managing the charts created by matplotlib libary"""
     def __init__(self, parent):
-        """Inits the dictionaries canvas_items and chartInformation for keeping track of existing charts"""
+        """Inits the dictionaries canvas_items and chartInformation for keeping track of existing charts
+        
+            Args:
+                  parent: a canvas tkinter widget
+        """
         self.parent = parent
         self.canvas_items = {}
         self.chartInformation = {}

@@ -122,7 +122,14 @@ class GridDisplay:
 
     def select(self, x_val, y_val, fillcolor):
         """Function to select cells. Currently called from spread_sheet_app when pressing SHIFT and dragging the mouse. 
-        Puts the values of selected cells inside self.drag_selected_values."""
+        Puts the values of selected cells inside self.drag_selected_values.
+        
+            Args: 
+                    x_val, y_val: the x and y values of the mouse
+                    
+                    fillcolor: color for highlighting the drag selected cells
+        
+        """
         virtual_coords = self.clip_to_grid(
             self.canvas.canvasx(x_val), self.canvas.canvasy(y_val))
         if virtual_coords[0] != 0 and virtual_coords[1] != 0:
@@ -185,7 +192,12 @@ class GridDisplay:
             
             
     def get_sum_of_selection(self):
-        """Calculates the sum of currently selected values inside self.drag_selected_values"""
+        """Calculates the sum of currently selected values inside self.drag_selected_values
+        
+            Returns:
+                    sum_of_selection: sum of currently selected values
+        
+        """
         answerString = ""
         sum_of_selection = 0
         for val in self.drag_selected_values.values():
@@ -198,7 +210,12 @@ class GridDisplay:
         return sum_of_selection
 
     def get_average_of_selection(self):
-        """Calculates the average of currently selected values inside self.drag_selected_values"""
+        """Calculates the average of currently selected values inside self.drag_selected_values
+        
+             Returns: average of currently selected values
+                    
+
+        """
         sum_of_selection = self.get_sum_of_selection()
         if isinstance(sum_of_selection, str):
             return sum_of_selection
@@ -206,11 +223,25 @@ class GridDisplay:
             return sum_of_selection / len(self.drag_selected_values)
         
     def generate_preview_text(self, text):
-        """Function to generate preview text that displays when cell is not edited"""
+        """Function to generate preview text that displays when cell is not edited
+        
+            Args:
+                 text: string
+            
+            Returns: String that has been shortened to the lenght of self.max_letters_in_cell
+                     
+        
+        """
         return text.replace("\n", "")[:self.max_letters_in_cell]
 
     def clip_to_grid(self, firstx, firsty):
-        """returns the left corner coordinates of a cell given x and y"""
+        """returns the left corner coordinates of a cell given x and y
+
+            Args:
+                    firstx, firsty: x and y coordinates
+            
+            Returns: Tuple of (x, y) that is the top left corner of a cell
+        """
         x_pos = firstx - firstx % self.cell_width
         y_pos = firsty - firsty % self.cell_height
         return (x_pos, y_pos)
@@ -223,7 +254,12 @@ class GridDisplay:
                key, text=self.generate_preview_text(str(self.cell_grid_values[grid_cell_number])))
     
     def handle_clicks(self, event):
-            """Function to respond to click events sent from spread sheet app"""
+            """Function to respond to click events sent from spread sheet app
+            
+                Args: 
+                        event: Tkinter event
+                        
+            """
             self.reset_drag()
             self.cancel_cell_edit()
             if event.state != 1:
@@ -232,7 +268,11 @@ class GridDisplay:
                 self.select(event.x, event.y, "lightblue")
       
     def handle_movement(self, event):
-        """Function to respond to click events sent from spread sheet app"""
+        """Function to respond to click events sent from spread sheet app
+        
+            Args: 
+                    event: Tkinter event
+        """
         if event.state == 257:
             self.select(event.x, event.y, "lightblue")
         

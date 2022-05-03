@@ -21,7 +21,14 @@ class FileSaver:
         self.data[primary_key] = data
 
     def read_dict_from_file(self, path):
-        """Reads a single dictionary from test.json and returns it if the file exits"""
+        """Reads a single dictionary from test.json and returns it if the file exits
+        
+            Returns:
+                Dictionary containing the app state with keys 
+                        cell_values: contains the cell values
+                    
+                        chart_values: contains a dictionary of chart information
+        """
         try:
             file = open("test.json", "r")
             data = json.load(file)

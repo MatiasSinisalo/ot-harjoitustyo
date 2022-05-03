@@ -49,19 +49,32 @@ class SpreadSheetApp:
         self.grid_canvas.bind('<Motion>', self.spread_sheet_view.handle_movement)
     
     def handle_clicks(self, event):
-        """Function for delegating click events to different classes"""
+        """Function for delegating click events to different classes
+        
+            Args: 
+                event: Tkinter event
+        """
         if event.widget.widgetName == "gridCanvas":
            self.spread_sheet_view.handle_clicks(event)
         if event.widget.widgetName == "chartWidget":
             self.canvas_chart_manager.on_click(event)
 
     def handle_x_scroll(self, a_val, b_val):
-        """Function for updating classes effected by grid horizontal scroll"""
+        """Function for updating classes effected by grid horizontal scroll
+
+            Args:
+                    a_val, b_val: values provided by tkinter for scrolling
+        
+        """
         self.grid_canvas.xview(a_val, b_val)
         self.canvas_chart_manager.update_all_charts()
 
     def handle_y_scroll(self, a_val, b_val):
-        """Function for updating classes effected by grid vertical scroll"""
+        """Function for updating classes effected by grid vertical scroll
+            
+            Args:
+                    a_val, b_val: values provided by tkinter for scrolling
+        """
         self.grid_canvas.yview(a_val,  b_val)
         self.canvas_chart_manager.update_all_charts()
 
