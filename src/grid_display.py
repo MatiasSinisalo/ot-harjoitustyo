@@ -189,7 +189,7 @@ class GridDisplay:
 
                 traveller_y += self.cell_height
                 traveller_x = left_corner_x
-            
+    
             
     def get_sum_of_selection(self):
         """Calculates the sum of currently selected values inside self.drag_selected_values

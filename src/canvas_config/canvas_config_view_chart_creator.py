@@ -56,16 +56,14 @@ class CanvasChartCreatorView:
     def set_x_values_for_next_chart(self):
         """Sets the x values for the next chart"""
         self.x_values_for_chart = []
-        for key in self.app.spread_sheet_view.drag_selected_values:
-            cell_number = self.app.spread_sheet_view.cell_grid_number_by_text_id[key]
-            self.x_values_for_chart.append(self.app.spread_sheet_view.cell_grid_values[cell_number])
+        for val in self.app.spread_sheet_view.drag_selected_values.values():
+            self.x_values_for_chart.append(val)
 
     def set_y_values_for_next_chart(self):
         """Sets the y values for the next chart"""
         self.y_values_for_chart = []
-        for key in self.app.spread_sheet_view.drag_selected_values:
-            cell_number = self.app.spread_sheet_view.cell_grid_number_by_text_id[key]
-            self.y_values_for_chart.append(self.app.spread_sheet_view.cell_grid_values[cell_number])
+        for val in self.app.spread_sheet_view.drag_selected_values.values():
+            self.y_values_for_chart.append(val)
 
     def create_new_bar_chart(self):
         """Calls the chart canvas manager to create a new bar chart"""
