@@ -1,6 +1,8 @@
 
 
+from tkinter import Frame
 import matplotlib
+from matplotlib.widgets import Widget
 from graphs.bar_chart import BarChart
 from graphs.pie_chart import PieChart
 
@@ -47,17 +49,22 @@ class ChartManager:
                           size_x, size_y, dots_per_inch, xpos, ypos, new_chart, chartType):
         """Helper function responsible for creating the tkinter widget and tkinter chart window for displaying the chart for the user.
         """
-        chart_matplot_item = new_chart.get_chart(self.parent)
+        chartContainer = Frame(self.parent)
+
+        chart_matplot_item = new_chart.get_chart(chartContainer)
         chart_widget = chart_matplot_item.get_tk_widget()
         chart_widget.config(highlightcolor="lightblue", highlightthickness=3)
         chart_widget.widgetName = "chartWidget"
         chart_widget.bind("<Motion>", self.on_chart_drag)
         chart_widget.bind("<Delete>", self.delete_chart)
         chart_widget.bind("<1>", self.on_click)
-        chart_widget_windowid = self.parent.create_window(
-            xpos, ypos, window=chart_widget)
-        
+        chart_widget.grid(column=0, row=0)
+       
         new_chart_id = len(self.chartInformation)
+        chart_widget_windowid = self.parent.create_window(
+            xpos, ypos, window=chartContainer, tags=f"{new_chart_id}")
+        
+        
         self.chartInformation[new_chart_id] = {"type":chartType, "title":title,  "x_title":x_title, "y_title":y_title, 
                                                 "x_values":x_values, "y_values":y_values,
                                                 "size_x":size_x, "size_y":size_y, 
@@ -76,20 +83,21 @@ class ChartManager:
     def on_click(self, event):
         """Function to handle click events sent by tkinter"""
         event.widget.focus_set()
-
+        event.widget.master.lift()
+        
     def on_chart_drag(self, event):
         """Function to move the chart when it is dragged"""
         if event.state == 256:
             
             canvasItem = self.canvas_items[event.widget][0]
-            matplotLibGraph = self.canvas_items[event.widget][1]
             chartId = self.canvas_items[event.widget][2]
 
             self.parent.move(
                 canvasItem, event.x, event.y)
-            matplotLibGraph.draw_idle()
             self.parent.update_idletasks()
+            self.update_all_charts()
             self.chartInformation[chartId]["coords"] = self.parent.coords(canvasItem)
+            
 
     def update_all_charts(self):
         """Updates every chart widget. Used to make dragging the charts less choppy"""
