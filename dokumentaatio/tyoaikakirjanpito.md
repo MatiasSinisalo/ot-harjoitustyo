@@ -12,6 +12,7 @@
 |25.4.2022      |   3            |
 |2.5.2022       |   3            |
 |3.5.2022       |   4            |
+|12.5.2022      |   2            |
 
 
 3.4.2022:
@@ -51,5 +52,9 @@ Ohjelmakoodin rakenteen muuttamista.
 testien teko spread_sheet_app moduulille.  
 Docstring documentaation aloitus.  
 
-------------------
-Työtunnit yhteensä: 41 h
+12.5  
+Valittu taulukko näkyy päällimmäisenä.  
+Taulukon raahaaminen toisen taulukon päällä on vähemmän katkonaista.  
+
+------------------  
+Työtunnit yhteensä: 41 h  

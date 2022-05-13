@@ -110,5 +110,14 @@ class ChartManager:
         self.parent.delete(self.canvas_items[event.widget][0])
         chart_id_to_delete = self.canvas_items.pop(event.widget)[2]
         self.chartInformation.pop(chart_id_to_delete)
+    
+
+    def delete_all_charts(self):
+        for key in self.canvas_items:
+            self.parent.delete(self.canvas_items[key][0])
+        self.canvas_items = {}
+        self.chartInformation = {}
+        
+
 
         

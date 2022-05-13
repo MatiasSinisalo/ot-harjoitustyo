@@ -30,6 +30,7 @@ class GridDisplay:
         cell_number = 0
         for column in range(grid_width):
             for row in range(grid_height):
+                cell_number += 1
                 if column == 0 and row == 0:
                     cell_value = ""
                     fill_color = "lightgray"
@@ -42,7 +43,7 @@ class GridDisplay:
                 else:
                     cell_value = cell_number
                     fill_color = "white"
-                    cell_number += 1
+                    
                 self.canvas.create_rectangle(column*self.cell_width, row * cell_height,
                                              column*self.cell_width + self.cell_width,
                                              row*self.cell_height+self.cell_height,
@@ -275,4 +276,6 @@ class GridDisplay:
         """
         if event.state == 257:
             self.select(event.x, event.y, "lightblue")
-        
+    
+    
+

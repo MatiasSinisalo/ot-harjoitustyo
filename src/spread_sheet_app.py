@@ -1,4 +1,4 @@
-from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, StringVar, Text, Tk
+from tkinter import E, HORIZONTAL, N, S, VERTICAL, W, Button, Canvas, Frame, Label, Menu, Scrollbar, StringVar, Text, Tk, filedialog
 from canvas_config.canvas_config_view import CanvasConfigView
 from grid_display import GridDisplay
 from graphs.matplotlib_graphs import ChartManager
@@ -126,28 +126,38 @@ class SpreadSheetApp:
 
         menu_file = Menu(menubar)
         menubar.add_cascade(menu=menu_file, label='Tiedosto')
+        menu_file.add_command(label="Avaa tiedosto", command=self.openSaveFile)
+        menu_file.add_command(label="Tallenna tiedostoon", command=self.saveStateToFile)
 
-        menu_edit = Menu(menubar)
-        menubar.add_cascade(menu=menu_edit, label='Muokkkaa')
+    def openSaveFile(self):
+        """Launches the operating system file browser"""
+        #help from https://docs.python.org/3/library/dialog.html#module-tkinter.filedialog 
+        file = filedialog.askopenfile("r", defaultextension=".json", filetypes=[("JSON","*.json")])
+        self.loadStateFromFile(file)
+       
+    
 
     def saveStateToFile(self):
         """Saves the app state as a dictionary to a file which is correctly test.json"""
-     
+        self.spread_sheet_view.cancel_cell_edit()
+        file = filedialog.asksaveasfile("w", defaultextension=".json", filetypes=[("JSON","*.json")])
         self.filesaver.bind_data_to_save("cell_values", self.spread_sheet_view.cell_grid_values)
         self.filesaver.bind_data_to_save("chart_values", self.canvas_chart_manager.chartInformation)
-        self.filesaver.save_dict_to_file("")
+        self.filesaver.save_dict_to_file(file)
      
     
 
     
-    def loadStateFromFile(self):
+    def loadStateFromFile(self, file):
         """loads app state from a file which is correctly test.json"""
-        state = self.filesaver.read_dict_from_file("")
+        state = self.filesaver.read_dict_from_file(file)
         if state != None:
+            
             for key in state["cell_values"]:
                 self.spread_sheet_view.cell_grid_values[int(key)] = state["cell_values"][key]
             self.spread_sheet_view.updateViewText()
 
+            self.canvas_chart_manager.delete_all_charts()
             for chart in state["chart_values"]:
                 information = state["chart_values"][chart]
                 if information["type"] == "Bar":

@@ -10,18 +10,30 @@ class FileSaver:
         self.open_file = None
         pass
    
-    def save_dict_to_file(self, path):
-        """Saves the data dictionary to test.json"""
-        file = open("test.json", "w")
+    def save_dict_to_file(self, file):
+        """Saves the data dictionary to a file and closes the file
+
+            Args:
+                    file: filehandle to file
+
+        """
         json.dump(self.data, file)
         file.close()
     
     def bind_data_to_save(self, primary_key, data):
-        """Puts data inside the data dictionary with a key of primary_key"""
+        """Puts data inside the data dictionary with a key of primary_key
+              
+            
+        
+        """
         self.data[primary_key] = data
 
-    def read_dict_from_file(self, path):
-        """Reads a single dictionary from test.json and returns it if the file exits
+    def read_dict_from_file(self, file):
+        """Reads a single dictionary from a file and closes the file
+
+            Args:
+                    file: filehandle to file
+        
         
             Returns:
                 Dictionary containing the app state with keys 
@@ -30,7 +42,6 @@ class FileSaver:
                         chart_values: contains a dictionary of chart information
         """
         try:
-            file = open("test.json", "r")
             data = json.load(file)
             file.close()
             return data
