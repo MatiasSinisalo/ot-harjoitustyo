@@ -15,7 +15,7 @@ Sovelluksen tarkoitus on olla yksinkertainen taulukkolaskentasovellus, jossa kä
 
 -------------
 
-[Käyttö ohje](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+[Käyttöohje](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
 [Vaativuus määrittely](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/vaativuusmaarittely.md)  
 
