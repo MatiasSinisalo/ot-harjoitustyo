@@ -45,7 +45,7 @@ class SpreadSheetApp:
 
     def init_bind_events(self):
         """Function for binding events to the application"""
-        self.root.bind('<1>', self.handle_clicks)
+        self.grid_canvas.bind('<1>', self.handle_clicks)
         self.grid_canvas.bind('<Motion>', self.spread_sheet_view.handle_movement)
     
     def handle_clicks(self, event):

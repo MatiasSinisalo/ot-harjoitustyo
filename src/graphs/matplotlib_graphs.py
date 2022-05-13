@@ -95,12 +95,12 @@ class ChartManager:
             self.parent.move(
                 canvasItem, event.x, event.y)
             self.parent.update_idletasks()
-            self.update_all_charts()
+           
             self.chartInformation[chartId]["coords"] = self.parent.coords(canvasItem)
             
 
     def update_all_charts(self):
-        """Updates every chart widget. Used to make dragging the charts less choppy"""
+        """Updates every matplotlib chart widget"""
         for val in self.canvas_items.values():
             val[1].draw_idle()
         return 0
