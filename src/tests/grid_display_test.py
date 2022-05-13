@@ -36,23 +36,23 @@ class Testgrid_display(unittest.TestCase):
     def test_clickRegistersOnCorrectTile(self):
         widget = self.spreadSheetView.edit_cell(self.clickEvent)
         TextOfWidget = widget.get("1.0", END)
-        self.assertEqual(TextOfWidget.replace("\n", ""), "0")
+        self.assertEqual(TextOfWidget.replace("\n", ""), "102")
 
         self.clickEvent.x = 400
         widget = self.spreadSheetView.edit_cell(self.clickEvent)
         TextOfWidget = widget.get("1.0", END)
-        self.assertEqual(TextOfWidget.replace("\n", ""), "99")
+        self.assertEqual(TextOfWidget.replace("\n", ""), "202")
 
         self.clickEvent.y = 100
         widget = self.spreadSheetView.edit_cell(self.clickEvent)
         TextOfWidget = widget.get("1.0", END)
-        self.assertEqual(TextOfWidget.replace("\n", ""), "100")
+        self.assertEqual(TextOfWidget.replace("\n", ""), "203")
 
         self.clickEvent.x = 370
         self.clickEvent.y = 70
         widget = self.spreadSheetView.edit_cell(self.clickEvent)
         TextOfWidget = widget.get("1.0", END)
-        self.assertEqual(TextOfWidget.replace("\n", ""), "0")
+        self.assertEqual(TextOfWidget.replace("\n", ""), "102")
 
         
 
@@ -76,14 +76,14 @@ class Testgrid_display(unittest.TestCase):
         BackTowidget = self.spreadSheetView.edit_cell(self.clickEvent)
         # check that the first widget has been updated
         TextOfWidget = BackTowidget.get("1.0", END)
-        self.assertEqual(TextOfWidget.replace("\n", ""), "hello0")
+        self.assertEqual(TextOfWidget.replace("\n", ""), "hello102")
 
         # test that the second has been updated
         self.clickEvent.x = 400
         BackToSecondWidget = self.spreadSheetView.edit_cell(self.clickEvent)
         TextOfSecondWidget = BackToSecondWidget.get("1.0", END)
         self.assertEqual(TextOfSecondWidget.replace(
-            "\n", ""), "SecondHello99")
+            "\n", ""), "SecondHello202")
     
     def test_SumOfSelectedValuesIsCorrect(self):
         self.spreadSheetView.drag_selected_values = {"1":"1", "2":"2", "3":"3"}

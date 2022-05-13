@@ -127,20 +127,24 @@ class SpreadSheetApp:
         menu_file = Menu(menubar)
         menubar.add_cascade(menu=menu_file, label='Tiedosto')
         menu_file.add_command(label="Avaa tiedosto", command=self.openSaveFile)
-        menu_file.add_command(label="Tallenna tiedostoon", command=self.saveStateToFile)
+        menu_file.add_command(label="Tallenna tiedostoon", command=self.createSaveFile)
 
     def openSaveFile(self):
         """Launches the operating system file browser"""
         #help from https://docs.python.org/3/library/dialog.html#module-tkinter.filedialog 
         file = filedialog.askopenfile("r", defaultextension=".json", filetypes=[("JSON","*.json")])
         self.loadStateFromFile(file)
-       
     
-
-    def saveStateToFile(self):
-        """Saves the app state as a dictionary to a file which is correctly test.json"""
+    def createSaveFile(self):
         self.spread_sheet_view.cancel_cell_edit()
         file = filedialog.asksaveasfile("w", defaultextension=".json", filetypes=[("JSON","*.json")])
+        self.saveStateToFile(file)
+
+  
+
+
+    def saveStateToFile(self, file):
+        """Saves the app state as a dictionary to a file which is correctly test.json"""
         self.filesaver.bind_data_to_save("cell_values", self.spread_sheet_view.cell_grid_values)
         self.filesaver.bind_data_to_save("chart_values", self.canvas_chart_manager.chartInformation)
         self.filesaver.save_dict_to_file(file)
