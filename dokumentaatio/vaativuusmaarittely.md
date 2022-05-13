@@ -11,10 +11,9 @@ Taulukkolaskentasovelluksen avulla käyttäjä pystyy järjestämään tietoa ta
 
 - Käyttäjä voi luoda visuaallisen esityksen syöttämästään tiedosta esimerkiksi 
   - [X] Pie taulukon 
-  -  viiva taulukon
   -  [X] pylväs kaavion  
 
 - Käyttäjä voi tehdä yksinkertaisia matemaattisia laskutoimituksia taulukossa olevalla tiedolla. esimerkiksi
   -  [X]  laskea valitsemiensa arvojen summan ja keskiarvon
 
--  [X]  taulukkohallintasovelluksen tiedot tallentuvat tiedostoon käyttäjän kovalevylle
+-  [X]  Käyttäjä voi tallentaa taulukon .json tiedostoon ja avata tallentamansa taulukon.
