@@ -13,7 +13,7 @@
 |2.5.2022       |   3            |
 |3.5.2022       |   4            |
 |12.5.2022      |   2            |
-
+|13.5.2022      |   2            |
 
 3.4.2022:
 Projektin alustus ja taulukkolaskentanäkymän kehityksen aloitus.
@@ -56,5 +56,10 @@ Docstring documentaation aloitus.
 Valittu taulukko näkyy päällimmäisenä.  
 Taulukon raahaaminen toisen taulukon päällä on vähemmän katkonaista.  
 
+13.5  
+Käyttäjä voi luoda sovelluksen tilan tallennusta varten tiedoston.  
+Käyttäjä voi avata tallennustiedoston.  
+
+
 ------------------  
-Työtunnit yhteensä: 41 h  
+Työtunnit yhteensä: 45 h  
