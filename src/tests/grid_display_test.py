@@ -105,3 +105,13 @@ class Testgrid_display(unittest.TestCase):
         self.spreadSheetView.drag_selected_values = {"1":"1", "2":"hello", "3":"3"}
         answer = self.spreadSheetView.get_average_of_selection()
         self.assertEqual(answer, "Arvoa ei voitu kääntää luvuksi: 'hello'")
+
+    def test_DragSelectsCorrectValues(self):
+        self.spreadSheetView.select(200, 50, "white")
+        self.assertEqual(self.spreadSheetView.drag_selected_values, {204:102})
+        self.spreadSheetView.deselect()
+        self.assertEqual(self.spreadSheetView.drag_selected_values, {})
+        self.spreadSheetView.select(200, 50, "white")
+        self.spreadSheetView.select(200, 100, "white")
+        self.assertEqual(self.spreadSheetView.drag_selected_values, {204:102, 206:103})
+        self.spreadSheetView.deselect()
