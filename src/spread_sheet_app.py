@@ -15,7 +15,7 @@ class SpreadSheetApp:
         self.root = Tk()
         self.root.option_add('*tearOff', False)
         self.root.title("Taulukkolaskentasovellus")
-        self.root.geometry("500x500")
+        self.root.geometry("1200x600")
         self.root.configure(background='SteelBlue1')
 
         self.filesaver = FileSaver()
