@@ -59,6 +59,7 @@ Taulukon raahaaminen toisen taulukon päällä on vähemmän katkonaista.
 13.5  
 Käyttäjä voi luoda sovelluksen tilan tallennusta varten tiedoston.  
 Käyttäjä voi avata tallennustiedoston.  
+Unittestien teko griddisplayn ruutujen raahaamalla valitsemiseen.  
 
 
 ------------------  
