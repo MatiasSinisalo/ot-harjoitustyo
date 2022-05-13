@@ -11,7 +11,7 @@
 |12.4.2022      |   3            |
 |25.4.2022      |   3            |
 |2.5.2022       |   3            |
-|3.5.2022       |   3            |
+|3.5.2022       |   4            |
 
 
 3.4.2022:
@@ -49,6 +49,7 @@ Ohjelman taulukot ja ruudut tallentuvat testi.json tiedostoon.
 Käyttäjä voi valita otsikot luodessaan taulukkoja.  
 Ohjelmakoodin rakenteen muuttamista.  
 testien teko spread_sheet_app moduulille.  
+Docstring documentaation aloitus.  
 
 ------------------
-Työtunnit yhteensä: 40 h
+Työtunnit yhteensä: 41 h

@@ -10,7 +10,12 @@ Sovelluksen tarkoitus on olla yksinkertainen taulukkolaskentasovellus, jossa kä
 1. asenna riippuvuudet: poetry install  
 2. suorita: poetry run invoke start  
 
+
+
+
 -------------
+
+[Käyttöohje](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
 [Vaativuus määrittely](https://github.com/MatiasSinisalo/ot-harjoitustyo/blob/master/dokumentaatio/vaativuusmaarittely.md)  
 

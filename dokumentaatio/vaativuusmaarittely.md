@@ -17,4 +17,4 @@ Taulukkolaskentasovelluksen avulla käyttäjä pystyy järjestämään tietoa ta
 - Käyttäjä voi tehdä yksinkertaisia matemaattisia laskutoimituksia taulukossa olevalla tiedolla. esimerkiksi
   -  [X]  laskea valitsemiensa arvojen summan ja keskiarvon
 
-- taulukkohallintasovelluksen tiedot tallentuvat tiedostoon käyttäjän kovalevylle
+-  [X]  taulukkohallintasovelluksen tiedot tallentuvat tiedostoon käyttäjän kovalevylle
