@@ -1,3 +1,9 @@
+# Viikko 7  
+Käyttäjä voi tallentaa taulukon .json tiedostoon ja avata tallentamansa taulukon.   
+Testit tarkistavat raahaamalla ruutujen valitsemisen.  
+
+
+
 # Viikko 6  
 
 Taulukon ruutujen tiedot ja kaaviot tallentuvat test.json tiedostoon.  
