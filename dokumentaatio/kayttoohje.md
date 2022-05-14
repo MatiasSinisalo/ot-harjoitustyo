@@ -22,6 +22,12 @@ tai
 2. paina oikealla pystypalkissa olevaa nappoa "laske valinnan keskiarvo"
 
 
+Voit tallentaa taulukkosi painamalla vasemmassa yläkulmassa olevaa "tiedosto" nappulaa, ja sitten painamalla "tallenna tiedostoon" nappulaa.  
+Lisäksi voit avata tallentamasti taulukon painamalla vasemmassa yläkulmassa olevaa "tiedosto" nappulaa, ja sitten painamalla "avaa tiedosto" nappulaa.  
+
+
+
+
 
 
 
